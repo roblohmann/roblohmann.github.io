@@ -30,7 +30,8 @@ twitter_username: roblohmann
 github_username:  roblohmann
 
 # Build settings
-theme: minima
+#theme: minima
+theme: architect
 plugins:
   - jekyll-feed
 
