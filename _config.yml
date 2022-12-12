@@ -77,6 +77,14 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # _portfolio
+    - scope:
+        path: ""
+        type: portfolio
+      values:
+        layout: single
+        author_profile: true
+        share: true
 
 # Site Settings
 locale                   : "en"
@@ -95,6 +103,12 @@ author:
   github           : "roblohmann"  
   linkedin         : "roblohmann"  
   twitter          : "roblohmann"
+
+# Configure collections
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
 
 # Files to be processed
 include:  
