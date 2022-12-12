@@ -95,3 +95,7 @@ author:
   github           : "roblohmann"  
   linkedin         : "roblohmann"  
   twitter          : "roblohmann"
+
+# Files to be processed
+include:  
+  - _pages
