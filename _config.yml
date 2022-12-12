@@ -78,6 +78,14 @@ defaults:
       layout: single
       author_profile: true
 
+# Site Settings
+locale                   : "en"
+title                    : "Rob Lohmann | Passion for coding."
+title_separator          : "-"
+name                     : "Rob Lohmann | Passion for coding"
+description              : ".NET, C#, Azure"
+url                      : "https://roblohmann.github.io"
+
 # Site Author
 author:
   name             : "Rob Lohmann"
