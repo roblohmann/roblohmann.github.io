@@ -97,7 +97,7 @@ url                      : "https://roblohmann.github.io"
 # Site Author
 author:
   name             : "Rob Lohmann"
-  avatar           : "bio-photo.jpg"
+  avatar           : "me.jpg"
   bio              : "Besides my love for C#, .NET (Core) and Azure, I'm also a big fan of Lord of the Dance and the Dakar. Gaming 1-2 a week, love drinking a beer every now and then. <br /> Developer @ <a href=\"https://www.ecare.nl\">Ecare</a>."
   location         : "Oldenzaal, Netherlands"  
   github           : "roblohmann"  
