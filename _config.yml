@@ -90,7 +90,7 @@ defaults:
 locale                   : "en"
 title                    : "Rob Lohmann | Passion for coding."
 title_separator          : "-"
-name                     : "name"
+name                     : "Rob Lohmann"
 description              : ".NET, C#, Azure"
 url                      : "https://roblohmann.github.io"
 
