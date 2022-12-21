@@ -77,14 +77,14 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # # _portfolio
-  # - scope:
-  #     path: ""
-  #     type: portfolio
-  #   values:
-  #     layout: single
-  #     author_profile: true
-  #     share: true
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: true
+      share: true
 
 # Site Settings
 locale                   : "en"
@@ -110,6 +110,6 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-# # Files to be processed
-# include:  
-#   - _pages
+# Files to be processed
+include:  
+  - _pages
