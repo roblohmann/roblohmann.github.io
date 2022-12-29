@@ -3,8 +3,6 @@ title:  "MVC3, wat zijn mijn ervaringen tot nu toe?"
 date:   2011-04-30 00:00:00 +0100
 categories: blog
 tags: mvc
-redirect_from:
- - /2011/04/mvc3-wat-zijn-mijn-ervaringen-tot-nu-toe/
 ---
 MVC3 is in januari 2011 door Microsoft vrijgegeven. Ik heb de release op de voet gevolgd en ben mij er steeds meer in gaan verdiepen. In deze blog vertel ik over mijn ervaringen met MVC3 en wat mij is opgevallen tijdens het werken ermee.
 
