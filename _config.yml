@@ -70,6 +70,7 @@ defaults:
       comments: false
       share: true
       related: false
+      permalink: /:year/:month/:title
       header:
         image: images/banner-visual.jpg
   # _pages
