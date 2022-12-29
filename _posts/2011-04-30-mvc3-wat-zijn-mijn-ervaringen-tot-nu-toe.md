@@ -1,5 +1,5 @@
 ---
-title:  "Welcome to Jekyll!"
+title:  "MVC3, wat zijn mijn ervaringen tot nu toe?"
 date:   2011-04-30 00:00:00 +0100
 categories: mvc
 ---
