@@ -1,6 +1,7 @@
 ---
 title:  "XMLResult – XML als MVC Actionresult"
 date:   2011-06-20 00:00:00 +0100
+published: true
 categories: blog
 tags: mvc
 ---
