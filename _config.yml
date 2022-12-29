@@ -70,6 +70,8 @@ defaults:
       comments: false
       share: true
       related: false
+      header:
+        image: images/banner-visual.jpg
   # _pages
   - scope:
       path: ""
@@ -77,6 +79,8 @@ defaults:
     values:
       layout: single
       author_profile: true
+      header:
+        image: images/banner-visual.jpg      
   # _portfolio
   - scope:
       path: ""
@@ -85,6 +89,8 @@ defaults:
       layout: single
       author_profile: true
       share: true
+      header:
+        image: images/banner-visual.jpg      
 
 # Site Settings
 locale                   : "en"
