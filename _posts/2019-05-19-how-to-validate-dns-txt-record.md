@@ -10,7 +10,7 @@ Recently I’ve been using [Let’s Encrypt][1] a lot to generate SSL-certificat
 1. Open up a command prompt (cmd.exe) or PowerShell on your computer
 2. Enter the following command to check for the 'acme-challenge'-record;
 
-{% highlight console %}
+{% highlight C# %}
 nslookup -q=txt _acme-challenge.yourdomain.com
 {% endhighlight %}
 
