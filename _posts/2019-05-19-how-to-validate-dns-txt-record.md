@@ -8,8 +8,9 @@ tags: dns
 Recently I’ve been using [Let’s Encrypt][1] a lot to generate SSL-certificates. Let’s Encrypt uses the ACME-protocol to validate the ownership of a DNS-record, how this works is described on [their website][2]. Since this requires me to update my DNS-records I use the nslookup command to see if the updated TXT-Records is active. This truely is very easy!
 
 1. Open up a command prompt (cmd.exe) or PowerShell on your computer
-2. Enter the following command to check for the ‘acme-challenge’-record;
-{% highlight shell %}
+2. Enter the following command to check for the 'acme-challenge'-record;
+
+{% highlight console %}
 nslookup -q=txt _acme-challenge.yourdomain.com
 {% endhighlight %}
 
