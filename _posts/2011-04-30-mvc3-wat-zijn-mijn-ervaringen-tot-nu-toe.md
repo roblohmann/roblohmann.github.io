@@ -35,9 +35,8 @@ Met het gebruik van deze Package Manager wordt dit allemaal voor je gedaan, idea
 Tot zover deze blog over mijn ervaringen met MVC3, ik ben er zeker over te spreken. Je ziet dat ook Microsoft hard aan het werk is om het werk voor de ontwikkelaar makkelijker te maken en de code overzichtelijker en eenvoudigder.
 Tot slot hieronder nog een aantal interressante blogs waarvan ik vind dat jullie die zeker moeten lezen en moeten blijven volgen, beide blogs komen regelmatig met interressante artikelen over MVC en andere ASP.NET onderdelen.
 
-Reacties naar aanleiding van deze blog? Laat het weten!
-
 [Blog van Phil Haacked]. Phil Haacked werkt bij Microsoft mee aan de ontwikkelingen ASP.NET en MVC.
+
 [Blog van Scott Guthrie]. Scott Guthrie is Vice President van de MS Developer Division.
 
 [Blog van Phil Haacked]: http://www.haacked.com/
