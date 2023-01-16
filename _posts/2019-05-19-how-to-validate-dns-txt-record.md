@@ -10,7 +10,7 @@ Recently I’ve been using [Let’s Encrypt][1] a lot to generate SSL-certificat
 1. Open up a command prompt (cmd.exe) or PowerShell on your computer
 2. Enter the following command to check for the 'acme-challenge'-record;
 
-{% highlight C# %}
+{% highlight shell %}
 nslookup -q=txt _acme-challenge.yourdomain.com
 {% endhighlight %}
 
@@ -20,7 +20,7 @@ This will output something like;
 And that’s it, that is all you need to do!
 Besides this, it is also possible to fetch all TXT-records for a domain, this can be done with the following command;
 
-{% highlight %}
+{% highlight shell %}
 nslookup-q=txt yourdomain.com
 {% endhighlight %}
 
