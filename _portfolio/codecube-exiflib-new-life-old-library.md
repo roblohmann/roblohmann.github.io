@@ -3,9 +3,9 @@ title: "CodeCube.ExifLib"
 excerpt: "a new life for an old library"
 date:   2019-07-27 00:00:00 +0100
 published: true
-# header:
+ header:
 #   image: /assets/images/foo-bar-identity.jpg
-#   teaser: /assets/images/foo-bar-identity-th.jpg
+   teaser: /images/coding-teaser.jpg
 # sidebar:
 #   - title: "Role"
 #     image: http://placehold.it/350x250
