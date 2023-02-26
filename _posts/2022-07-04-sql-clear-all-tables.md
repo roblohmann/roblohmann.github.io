@@ -1,6 +1,6 @@
 ---
-title:  "Kubernetes: Removing Evicted pods"
-date:   2021-02-24 00:00:00 +0100
+title:  "SQL - How to clear all data in all tables"
+date:   2022-07-04 00:00:00 +0100
 published: true
 categories: blog
 tags: sql
