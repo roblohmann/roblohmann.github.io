@@ -3,7 +3,7 @@ title:  "Building Docker containers with Azure Devops"
 date:   2020-02-04 00:00:00 +0100
 published: false
 categories: blog
-tags: 'azure devops' kubernetes deployment
+tags: azure devops kubernetes deployment
 ---
 1. CI & CD Build maken
 
