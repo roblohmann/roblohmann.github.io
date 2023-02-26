@@ -115,6 +115,7 @@ author:
   twitter          : "roblohmann"
 
 # Configure collections
+collections_dir: collections
 collections:
   portfolio:
     output: true
