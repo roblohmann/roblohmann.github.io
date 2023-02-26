@@ -3,20 +3,39 @@ title:  "Kubernetes: Removing Evicted pods"
 date:   2021-02-24 00:00:00 +0100
 published: true
 categories: blog
-tags: kubernetes k8s bash
+tags: sql
 ---
-Recently I’ve been working a lot with Kubernetes in the Azure Cloud for my current employer. While deploying a microservice to a newly created namespace I saw that a lot of pods where having the status ‘Evicted‘. But what was the status ‘Evicted‘? I’d never seen it before.
+Recently I was working on a legacy project and had to create a copy of an existing database. This could only be done through the Azure Portal because I had no scripts or Entity Framework migrations available.
 
-A quick Google brought me to [Kubernetes.io][1] (ofcourse). And there I read that it means my cluster was running out of resources. Which made sense because I was expanding the cluster with new namespaces and multiple new pods, but I haven’t added any additional nodes.
+So I’ve chosen the pragmatic approach here and made a copy of the existing database in the Azure Portal. Once this was done I could access that database with my existing superuser on that Azure SQL Server.
 
-My current Kubernetes Service was running three nodes in the same pool based on a Standard_D2_v3 Virtual Machine. Basically this means I was running three Virtual Machines in my cluster.
-This configuration allows me up to 30 pods according to Azure. But was that still sufficient enough? I Already had three namespaces with an average of 7-9 pods. So I was running close to the suggested maximum of 30 pods already.
-Luckily this was easily solved by adding an additional node!
+Since I didn’t feel much like manually truncating all the tables manually (or write the sql-command for all the 22 tables) I did a quick google for an alternative. There I found a [topic on stackoverflow][1] which provided me with exactly the script I needed.
 
-After that I ran the kubectl-command below the remove all Evicted pods in my namespace. And everything was fine again
+This is the full script the way I used it.
 
-{% highlight shell %}
-kubectl get pod -n <my-namespace> | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n <my-namespace>
+{% highlight sql %}
+DECLARE @TableName NVARCHAR(MAX);
+DECLARE tableCursor CURSOR FAST_FORWARD 
+FOR 
+Select Object_name(object_id) AS TableName from sys.objects where type = 'U'
+
+OPEN tableCursor
+FETCH NEXT FROM tableCursor INTO @TableName
+
+WHILE (@@FETCH_STATUS <> -1)
+BEGIN
+IF (@@FETCH_STATUS <> -2)
+BEGIN
+DECLARE @statement NVARCHAR(200);
+SET @statement = 'DELETE FROM ' + @TableName;
+print @statement
+print ''
+execute sp_executesql @statement;
+END
+FETCH NEXT FROM tableCursor INTO @TableName
+END
+CLOSE tableCursor
+DEALLOCATE tableCursor
 {% endhighlight %}
 
-[1]: https://kubernetes.io/docs/tasks/administer-cluster/out-of-resource/
+[1]: https://stackoverflow.com/a/12713713
