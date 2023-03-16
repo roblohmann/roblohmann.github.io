@@ -18,6 +18,7 @@ az acr task create \
 #https://pixelrobots.co.uk/2020/02/purge-container-images-from-azure-container-registry-acr-on-demand-or-on-a-schedule/
 #https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auto-purge
 #https://www.mytechramblings.com/posts/automatically-purge-acr-images-using-acr-tasks/
+#https://learn.microsoft.com/en-us/cli/azure/acr/task?view=azure-cli-latest
 
 #WERKEND
 #PURGE_CMD="acr purge --filter '.*:.*' --untagged --ago 30d --keep 5 --untagged"
