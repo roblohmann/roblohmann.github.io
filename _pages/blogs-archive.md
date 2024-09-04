@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: .layout--archive
 permalink: /blog/archive/
 ---
 
