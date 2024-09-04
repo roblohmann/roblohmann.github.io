@@ -18,26 +18,23 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title                     : Your awesome title
-email                     : your-email@example.com
+title: Your awesome title
+email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
+
+domain: roblohmann.nl       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
 baseurl: "" # the subpath of your site, e.g. /blog
-url                       : "https://www.roblohmann.nl" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username          : roblohmann
-github_username           : roblohmann
-words_per_minute          : 200
+url: "https://www.roblohmann.nl" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: roblohmann
+github_username:  roblohmann
 
 # Build settings
-#theme: minima
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-include-cache
-
-minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -58,70 +55,3 @@ minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "n
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
-
-#----CUSTOM----
-defaults:
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      show_date: true
-      read_time: true
-      comments: false
-      share: true
-      related: false
-      permalink: /:year/:month/:title
-      header:
-        image: images/banner-visual.jpg
-  # _pages
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: single
-      author_profile: true
-      header:
-        image: images/banner-visual.jpg      
-  # _portfolio
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      header:
-        image: images/banner-visual.jpg      
-
-# Site Settings
-locale                   : "en"
-title                    : "Rob Lohmann | Passion for coding."
-title_separator          : "-"
-name                     : "Rob Lohmann"
-description              : ".NET, C#, Azure"
-url                      : "https://roblohmann.nl"
-
-# Site Author
-author:
-  name             : "Rob Lohmann"
-  avatar           : "me.jpg"
-  bio              : "Besides my love for C#, .NET (Core) and Azure, I'm also a big fan of Lord of the Dance and the Dakar. Gaming 1-2 a week, love drinking a beer every now and then. <br /> Developer @ <a href=\"https://www.ecare.nl\" target=\"_blank\" title=\"Visit www.ecare.nl\">Ecare</a>."
-  location         : "Netherlands"  
-  github           : "roblohmann"  
-  linkedin         : "roblohmann"  
-  twitter          : "roblohmann"
-
-# Configure collections
-collections_dir: collections
-collections:
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
-
-# Files to be processed
-include:  
-  - _pages
