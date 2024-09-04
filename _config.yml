@@ -38,7 +38,7 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 
-minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin: "contrast" # "air", "aqua", "contrast", "default" , "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
