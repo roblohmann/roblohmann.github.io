@@ -96,3 +96,7 @@ defaults:
       share: true
       header:
         image: images/banner-visual.jpg
+
+# Files to be processed
+include:  
+  - _pages
