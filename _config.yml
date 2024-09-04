@@ -59,3 +59,40 @@ minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "n
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+#----CUSTOM----
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      show_date: true
+      read_time: true
+      comments: false
+      share: true
+      related: false
+      permalink: /:year/:month/:title
+      header:
+        image: images/banner-visual.jpg
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      header:
+        image: images/banner-visual.jpg      
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      header:
+        image: images/banner-visual.jpg
