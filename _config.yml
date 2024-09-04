@@ -110,3 +110,7 @@ author:
   github           : "roblohmann"  
   linkedin         : "roblohmann"  
   twitter          : "roblohmann"  
+
+#homepage pagination
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
