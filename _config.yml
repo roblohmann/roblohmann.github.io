@@ -100,3 +100,13 @@ defaults:
 # Files to be processed
 include:  
   - _pages
+
+# Site Author
+author:
+  name             : "Rob Lohmann"
+  avatar           : "me.jpg"
+  bio              : "Besides my love for C#, .NET and Azure, I'm also a big fan of Lord of the Dance and the Dakar Rally. Gaming 1-2 a week, love drinking a beer every now and then. <br /> Cloud Architect @ <a href=\"https://www.ecare.nl\" target=\"_blank\" title=\"Visit www.ecare.nl\">Ecare</a>."
+  location         : "Netherlands"  
+  github           : "roblohmann"  
+  linkedin         : "roblohmann"  
+  twitter          : "roblohmann"  
