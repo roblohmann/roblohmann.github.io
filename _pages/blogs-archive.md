@@ -3,8 +3,6 @@ layout: blog-archive
 permalink: /blog/archive/
 ---
 
-{{ content }}
-
 <ul class="taxonomy__index">
   {% assign postsInYear = site.posts | where_exp: "item", "item.hidden != true" | group_by_exp: 'post', 'post.date | date: "%Y"' %}
   {% for year in postsInYear %}
