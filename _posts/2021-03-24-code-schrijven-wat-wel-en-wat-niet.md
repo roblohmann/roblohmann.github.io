@@ -3,7 +3,7 @@ title:  "XMLResult – XML als MVC Actionresult"
 date:   2011-06-20 00:00:00 +0100
 published: true
 categories: blog
-tags: .net C#
+tags: .net
 ---
 Veel ontwikkelaars en software architecten hebben zo hun een eigen ideeën over software- en webontwikkeling. Zo heb ik ze ook. Wel of geen commentaar in code? En variabelen? Moeten ze implicitly typed of explicitly typed? Iedereen heeft zijn mening over de manier van coderen. Maar een ding kan ik vooraf al wel zeggen, zolang het binnen de organisatie maar consistent is en iedereen zich eraan houdt voorkomt dit al veel onnodige discussies en problemen wanneer je in andersmans code moet werken.
 

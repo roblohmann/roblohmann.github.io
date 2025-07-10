@@ -3,7 +3,7 @@ title:  "Alle tabellen doorzoeken met SQL"
 date:   2025-07-10 15:46:00 +0100
 published: true
 categories: blog
-tags: k8s kubernetes azure
+tags: kubernetes 
 ---
 
 Ik ben vandaag bezig geweest met een Azure Kubernetes Cluster waarbij een nodepool toegevoegd moest worden. De huidige nodepool was gebaseerd op Virtual Machines met te weinig CPU. Kortom, tijd voor een nieuwe nodepool met een ander type Virtual Machine zodat het cluster beter eventuele pieken kon opvangen. Met de huidige configuratie duurde het te lang voordat auto-scaling acties plaats hadden gevonden.

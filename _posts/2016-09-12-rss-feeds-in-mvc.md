@@ -3,7 +3,7 @@ title:  "RSS-Feeds in MVC"
 date:   2016-09-12 00:00:00 +0100
 published: true
 categories: blog
-tags: C# mvc
+tags: mvc
 ---
 Met het herbouwen van mijn site heb ik ook veel code herschreven of zelfs opnieuw geschreven. Mijn vorige site was al een aantal jaren oud en in mijn werk leer ik ook nog dagelijks dingen bij of ontdek ik nieuwe dingen.
 Een van de dingen die ik jaren terug zelf toegevoegd heb is een RSS-Feed, destijds zelf gebouwd en redelijk recht-toe-recht aan met hardcoded url’s enzo. Per toeval stuitte ik op een blog van codeinside waarop ik een artikel tegenkwam hoe zij dit doen., namelijk met een syndicationfeed.

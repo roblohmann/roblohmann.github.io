@@ -3,7 +3,7 @@ title:  "Wat is scrum?"
 date:   2019-04-29 00:00:00 +0100
 published: true
 categories: blog
-tags: scrum agile
+tags: agile 
 ---
 Recent kwam ik op scrum.org een interessante [blog][1] tegen. Deze blog deed mij denken aan veel dingen van Scrum die ik tijdens mijn training voor Scrum master heb geleerd. En vooral ook aan de dingen die vaak genoemd worden door de mensen die niet zo’n grote voorstander van Scrum zijn.
 

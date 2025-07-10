@@ -3,7 +3,7 @@ title:  "Update targetframework for .NET Core projects with PowerShell"
 date:   2019-12-06 00:00:00 +0100
 published: true
 categories: blog
-tags: powershell .net
+tags: powershell
 ---
 With the recent release of .NET Core 3.1 last Wednesday, I decided to upgrade to current project I’m working on from .NET Core 3.0 to .NET Core 3.1. This sounds easy right?
 
