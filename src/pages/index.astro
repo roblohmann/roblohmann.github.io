@@ -8,9 +8,12 @@ const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const socials = [
-  { name: 'GitHub', url: 'https://github.com/roblohmann', icon: '🔗' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/roblohmann', icon: '💼' },
-  { name: 'Twitter', url: 'https://twitter.com/roblohmann', icon: '🐦' },
+  { name: 'GitHub', url: 'https://github.com/roblohmann', icon: '🔗', iconType: 'github' as const },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/roblohmann', icon: '💼', iconType: 'linkedin' as const },
+  { name: 'Twitter', url: 'https://twitter.com/roblohmann', icon: '🐦', iconType: 'twitter' as const },
+  { name: 'Facebook', url: 'https://facebook.com/roblohmann', icon: '📘', iconType: 'facebook' as const },
+  { name: 'Instagram', url: 'https://instagram.com/roblohmann', icon: '📸', iconType: 'instagram' as const },
+  { name: 'YouTube', url: 'https://youtube.com/@roblohmann', icon: '📺', iconType: 'youtube' as const },
 ];
 
 const featuredProjects = [
