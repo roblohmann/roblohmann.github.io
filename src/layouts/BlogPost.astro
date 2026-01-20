@@ -2,9 +2,11 @@
 import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+  readingTime?: string;
+};
 
-const { title, description, pubDate, updatedDate, tags } = Astro.props;
+const { title, description, pubDate, updatedDate, tags, readingTime } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
@@ -19,6 +21,9 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
             day: 'numeric'
           })}
         </time>
+        {readingTime && (
+          <span> • {readingTime} leestijd</span>
+        )}
         {updatedDate && (
           <span> • Bijgewerkt: <time datetime={updatedDate.toISOString()}>
             {updatedDate.toLocaleDateString('nl-NL', {

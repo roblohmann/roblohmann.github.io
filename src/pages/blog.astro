@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { getReadingTime } from '../content/config';
 
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -26,7 +27,7 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
-              })}
+              })} • {getReadingTime(post.body)}
             </p>
             <p class="text-gray-700 mb-4">{post.data.description}</p>
             {post.data.tags && (
