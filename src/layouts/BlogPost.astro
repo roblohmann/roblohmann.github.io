@@ -8,10 +8,10 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
-  <article>
-    <header>
-      <h1>{title}</h1>
-      <p class="meta">
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-8 pb-8 border-b border-gray-200">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">{title}</h1>
+      <p class="text-gray-600 text-sm mb-4">
         <time datetime={pubDate.toISOString()}>
           {pubDate.toLocaleDateString('nl-NL', {
             year: 'numeric',
@@ -30,78 +30,103 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
         )}
       </p>
       {tags && tags.length > 0 && (
-        <div class="tags">
+        <div class="flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <span class="tag">{tag}</span>
+            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm">{tag}</span>
           ))}
         </div>
       )}
     </header>
-    <div class="content">
+    <div class="prose prose-lg max-w-none">
       <slot />
     </div>
   </article>
 </Layout>
 
-<style>
-  article {
-    max-width: 800px;
+<style is:global>
+  .prose {
+    color: #374151;
   }
-
-  header {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
+  
+  .prose h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
-
-  h1 {
-    font-size: 2.5rem;
+  
+  .prose h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .prose h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .prose p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+  
+  .prose a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+  
+  .prose a:hover {
+    color: #0052a3;
+  }
+  
+  .prose ul, .prose ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  
+  .prose li {
     margin-bottom: 0.5rem;
   }
-
-  .meta {
-    color: #666;
-    font-size: 0.9rem;
-  }
-
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .tag {
-    background: #e0e0e0;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-  }
-
-  .content {
-    margin-top: 2rem;
-  }
-
-  .content :global(pre) {
-    background: #f4f4f4;
+  
+  .prose pre {
+    background: #1f2937;
+    color: #f3f4f6;
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     overflow-x: auto;
+    margin-bottom: 1.25rem;
   }
-
-  .content :global(code) {
-    background: #f4f4f4;
+  
+  .prose code {
+    background: #f3f4f6;
+    color: #1f2937;
     padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-size: 0.9em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
   }
-
-  .content :global(pre code) {
+  
+  .prose pre code {
     background: none;
+    color: #f3f4f6;
     padding: 0;
   }
-
-  .content :global(img) {
+  
+  .prose img {
     max-width: 100%;
     height: auto;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .prose blockquote {
+    border-left: 4px solid #0066cc;
+    padding-left: 1rem;
+    font-style: italic;
+    color: #6b7280;
+    margin: 1.5rem 0;
   }
 </style>

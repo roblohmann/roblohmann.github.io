@@ -10,90 +10,35 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
   title="Blog - Rob Lohmann" 
   description="Alle blog artikelen over software development"
 >
-  <h1>Blog</h1>
-  <p>Alle artikelen op een rij</p>
-  
-  <div class="posts">
-    {sortedPosts.map((post) => (
-      <article class="post-card">
-        <a href={`/blog/${post.slug}`}>
-          <h2>{post.data.title}</h2>
-          <p class="date">
-            {post.data.pubDate.toLocaleDateString('nl-NL', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </p>
-          <p class="description">{post.data.description}</p>
-          {post.data.tags && (
-            <div class="tags">
-              {post.data.tags.map((tag) => (
-                <span class="tag">{tag}</span>
-              ))}
-            </div>
-          )}
-        </a>
-      </article>
-    ))}
-  </div>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Blog</h1>
+      <p class="text-xl text-gray-600">Alle artikelen over software development, .NET, Azure en meer.</p>
+    </div>
+    
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {sortedPosts.map((post) => (
+        <article class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:shadow-xl hover:border-primary/50 transition-all hover:-translate-y-1">
+          <a href={`/blog/${post.slug}`}>
+            <h2 class="text-xl font-semibold mb-2 text-gray-900 hover:text-primary transition-colors">{post.data.title}</h2>
+            <p class="text-sm text-gray-500 mb-3">
+              {post.data.pubDate.toLocaleDateString('nl-NL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+            <p class="text-gray-700 mb-4">{post.data.description}</p>
+            {post.data.tags && (
+              <div class="flex flex-wrap gap-2">
+                {post.data.tags.map((tag) => (
+                  <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-primary rounded-full text-xs font-medium">{tag}</span>
+                ))}
+              </div>
+            )}
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
 </Layout>
-
-<style>
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .posts {
-    margin-top: 2rem;
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .post-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: box-shadow 0.2s;
-  }
-
-  .post-card:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-
-  .post-card a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .post-card h2 {
-    color: #0066cc;
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-  }
-
-  .date {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .description {
-    color: #555;
-  }
-
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .tag {
-    background: #e0e0e0;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-  }
-</style>

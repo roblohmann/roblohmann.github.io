@@ -1,99 +1,111 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const socials = [
+  { name: 'GitHub', url: 'https://github.com/roblohmann', icon: '🔗' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/roblohmann', icon: '💼' },
+  { name: 'Twitter', url: 'https://twitter.com/roblohmann', icon: '🐦' },
+];
+
+const featuredProjects = [
+  {
+    name: 'Voorbeeld Project 1',
+    description: 'Een uitgebreid .NET project met Azure integratie voor het beheren van cloud resources.',
+    url: 'https://github.com/roblohmann/project1',
+    technologies: ['.NET', 'Azure', 'C#', 'Docker'],
+  },
+  {
+    name: 'Kubernetes Tool',
+    description: 'Een handige CLI tool voor het beheren van Kubernetes clusters en het automatiseren van deployment workflows.',
+    url: 'https://github.com/roblohmann/k8s-tool',
+    technologies: ['Kubernetes', 'Go', 'CLI'],
+  },
+  {
+    name: 'PostgreSQL Utilities',
+    description: 'Een verzameling scripts en tools voor PostgreSQL database management en optimalisatie.',
+    url: 'https://github.com/roblohmann/postgres-utils',
+    technologies: ['PostgreSQL', 'Python', 'SQL'],
+  },
+];
 ---
 
 <Layout 
   title="Rob Lohmann - Developer Blog" 
   description="Persoonlijke blog over software development, .NET, Azure en meer"
 >
-  <h1>Welkom op mijn blog</h1>
-  <p>Hi, ik ben Rob Lohmann, een software developer gepassioneerd over .NET, Azure, en moderne web development.</p>
+  <Hero 
+    name="Rob Lohmann"
+    title="Software Developer & Cloud Enthusiast"
+    description="Gepassioneerd over .NET, Azure, Kubernetes en moderne web development. Ik deel mijn kennis en ervaring op deze blog."
+    socials={socials}
+  />
   
-  <h2>Laatste artikelen</h2>
-  <div class="posts">
-    {sortedPosts.map((post) => (
-      <article class="post-card">
-        <a href={`/blog/${post.slug}`}>
-          <h3>{post.data.title}</h3>
-          <p class="date">
-            {post.data.pubDate.toLocaleDateString('nl-NL', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </p>
-          <p class="description">{post.data.description}</p>
-          {post.data.tags && (
-            <div class="tags">
-              {post.data.tags.map((tag) => (
-                <span class="tag">{tag}</span>
-              ))}
-            </div>
-          )}
-        </a>
-      </article>
-    ))}
-  </div>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Laatste artikelen</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {sortedPosts.slice(0, 6).map((post) => (
+        <article class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:shadow-xl hover:border-primary/50 transition-all hover:-translate-y-1">
+          <a href={`/blog/${post.slug}`} class="block">
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 hover:text-primary transition-colors">{post.data.title}</h3>
+            <p class="text-sm text-gray-500 mb-3">
+              {post.data.pubDate.toLocaleDateString('nl-NL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+            <p class="text-gray-700 mb-4">{post.data.description}</p>
+            {post.data.tags && (
+              <div class="flex flex-wrap gap-2">
+                {post.data.tags.map((tag) => (
+                  <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-primary rounded-full text-xs font-medium">{tag}</span>
+                ))}
+              </div>
+            )}
+          </a>
+        </article>
+      ))}
+    </div>
+    <div class="mt-8 text-center">
+      <a href="/blog" class="inline-block px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transition-all font-medium hover:scale-105 transform">
+        Bekijk alle artikelen →
+      </a>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold mb-8 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">Featured Portfolio</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {featuredProjects.map((project) => (
+        <article class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:shadow-xl hover:border-secondary/50 transition-all hover:-translate-y-1">
+          <div class="flex items-start justify-between mb-3">
+            <h3 class="text-xl font-semibold text-gray-900 flex-1">
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="hover:text-secondary transition-colors">
+                {project.name}
+              </a>
+            </h3>
+            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <p class="text-gray-700 mb-4">{project.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+              <span class="px-3 py-1 bg-gradient-to-r from-purple-100 to-green-100 text-secondary rounded-full text-xs font-medium">{tech}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="mt-8 text-center">
+      <a href="/portfolio" class="inline-block px-8 py-3 bg-gradient-to-r from-secondary to-accent text-white rounded-lg hover:shadow-lg transition-all font-medium hover:scale-105 transform">
+        Bekijk alle projecten →
+      </a>
+    </div>
+  </section>
 </Layout>
-
-<style>
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .posts {
-    margin-top: 2rem;
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .post-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: box-shadow 0.2s;
-  }
-
-  .post-card:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-
-  .post-card a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .post-card h3 {
-    color: #0066cc;
-    margin-bottom: 0.5rem;
-  }
-
-  .date {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .description {
-    color: #555;
-  }
-
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .tag {
-    background: #e0e0e0;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-  }
-</style>

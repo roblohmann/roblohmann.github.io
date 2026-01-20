@@ -1,0 +1,51 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  description: string;
+  imageSrc?: string;
+  socials?: Array<{
+    name: string;
+    url: string;
+    icon: string;
+  }>;
+}
+
+const { name, title, description, imageSrc = '/images/profile.jpg', socials = [] } = Astro.props;
+---
+
+<section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-5xl md:text-6xl font-bold mb-4">{name}</h1>
+        <p class="text-xl text-blue-100 mb-6">{title}</p>
+        <p class="text-lg text-blue-50 mb-8 leading-relaxed">{description}</p>
+        
+        {socials.length > 0 && (
+          <div class="flex flex-wrap gap-4">
+            {socials.map((social) => (
+              <a 
+                href={social.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white hover:text-primary rounded-lg transition-all text-white font-medium backdrop-blur-sm border border-white/20 hover:scale-105 transform"
+              >
+                <span>{social.icon}</span>
+                <span>{social.name}</span>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+      
+      <div class="flex justify-center md:justify-end">
+        <img 
+          src={imageSrc} 
+          alt={name}
+          class="rounded-2xl shadow-lg max-w-sm w-full h-auto object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>
