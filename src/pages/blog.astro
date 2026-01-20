@@ -10,15 +10,15 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
   title="Blog - Rob Lohmann" 
   description="Alle blog artikelen over software development"
 >
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <section class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-16">
     <div class="mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Blog</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 border-l-4 border-primary pl-4">Blog</h1>
       <p class="text-xl text-gray-600">Alle artikelen over software development, .NET, Azure en meer.</p>
     </div>
     
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {sortedPosts.map((post) => (
-        <article class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:shadow-xl hover:border-primary/50 transition-all hover:-translate-y-1">
+        <article class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md hover:border-primary transition-all">
           <a href={`/blog/${post.slug}`}>
             <h2 class="text-xl font-semibold mb-2 text-gray-900 hover:text-primary transition-colors">{post.data.title}</h2>
             <p class="text-sm text-gray-500 mb-3">
@@ -32,7 +32,7 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
             {post.data.tags && (
               <div class="flex flex-wrap gap-2">
                 {post.data.tags.map((tag) => (
-                  <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-primary rounded-full text-xs font-medium">{tag}</span>
+                  <span class="px-3 py-1 bg-blue-50 text-primary rounded text-xs font-medium">{tag}</span>
                 ))}
               </div>
             )}

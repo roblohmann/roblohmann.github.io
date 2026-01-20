@@ -14,8 +14,8 @@ interface Props {
 const { name, title, description, imageSrc = '/images/profile.jpg', socials = [] } = Astro.props;
 ---
 
-<section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<section class="bg-primary text-white">
+  <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-16">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div>
         <h1 class="text-5xl md:text-6xl font-bold mb-4">{name}</h1>
@@ -29,7 +29,7 @@ const { name, title, description, imageSrc = '/images/profile.jpg', socials = []
                 href={social.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white hover:text-primary rounded-lg transition-all text-white font-medium backdrop-blur-sm border border-white/20 hover:scale-105 transform"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-white text-primary hover:bg-blue-50 rounded-lg transition-all font-medium border border-white"
               >
                 <span>{social.icon}</span>
                 <span>{social.name}</span>
@@ -39,11 +39,11 @@ const { name, title, description, imageSrc = '/images/profile.jpg', socials = []
         )}
       </div>
       
-      <div class="flex justify-center md:justify-end">
+      <div class="flex justify-start md:justify-start">
         <img 
           src={imageSrc} 
           alt={name}
-          class="rounded-2xl shadow-lg max-w-sm w-full h-auto object-cover"
+          class="rounded-full shadow-xl w-64 h-64 object-cover border-4 border-white"
         />
       </div>
     </div>
