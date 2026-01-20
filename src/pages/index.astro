@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout 
+  title="Rob Lohmann - Developer Blog" 
+  description="Persoonlijke blog over software development, .NET, Azure en meer"
+>
+  <h1>Welkom op mijn blog</h1>
+  <p>Hi, ik ben Rob Lohmann, een software developer gepassioneerd over .NET, Azure, en moderne web development.</p>
+  
+  <h2>Laatste artikelen</h2>
+  <div class="posts">
+    {sortedPosts.map((post) => (
+      <article class="post-card">
+        <a href={`/blog/${post.slug}`}>
+          <h3>{post.data.title}</h3>
+          <p class="date">
+            {post.data.pubDate.toLocaleDateString('nl-NL', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </p>
+          <p class="description">{post.data.description}</p>
+          {post.data.tags && (
+            <div class="tags">
+              {post.data.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          )}
+        </a>
+      </article>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .posts {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .post-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .post-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-card h3 {
+    color: #0066cc;
+    margin-bottom: 0.5rem;
+  }
+
+  .date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    color: #555;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: #e0e0e0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+</style>

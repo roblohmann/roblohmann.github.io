@@ -1,0 +1,107 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Layout from './Layout.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, tags } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <article>
+    <header>
+      <h1>{title}</h1>
+      <p class="meta">
+        <time datetime={pubDate.toISOString()}>
+          {pubDate.toLocaleDateString('nl-NL', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+        {updatedDate && (
+          <span> • Bijgewerkt: <time datetime={updatedDate.toISOString()}>
+            {updatedDate.toLocaleDateString('nl-NL', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time></span>
+        )}
+      </p>
+      {tags && tags.length > 0 && (
+        <div class="tags">
+          {tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+    <div class="content">
+      <slot />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  article {
+    max-width: 800px;
+  }
+
+  header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .meta {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    background: #e0e0e0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+
+  .content {
+    margin-top: 2rem;
+  }
+
+  .content :global(pre) {
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+
+  .content :global(code) {
+    background: #f4f4f4;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+
+  .content :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .content :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
