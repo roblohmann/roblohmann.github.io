@@ -21,10 +21,10 @@ const sortedPosts = publishedPosts.sort((a, b) => b.data.pubDate.valueOf() - a.d
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {sortedPosts.map((post, index) => (
         <article 
-          class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 fade-in"
+          class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 fade-in flex flex-col"
           style={`animation-delay: ${index * 50}ms`}
         >
-          <a href={`/blog/${post.slug}`} class="block">
+          <a href={`/blog/${post.slug}`} class="flex flex-col flex-grow">
             <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors leading-tight">
               {post.data.title}
             </h2>
@@ -45,7 +45,7 @@ const sortedPosts = publishedPosts.sort((a, b) => b.data.pubDate.valueOf() - a.d
             </p>
             <p class="text-gray-700 dark:text-gray-300 mb-5 leading-relaxed line-clamp-3">{post.data.description}</p>
             {post.data.tags && (
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2 mt-auto">
                 {post.data.tags.slice(0, 3).map((tag) => (
                   <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 rounded-full text-xs font-semibold border border-primary/20">
                     {tag}

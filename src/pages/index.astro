@@ -77,10 +77,10 @@ const featuredProjects = [
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 fade-in-section">
       {sortedPosts.slice(1, 7).map((post, index) => (
         <article 
-          class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300"
+          class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 flex flex-col"
           style={`animation-delay: ${index * 100}ms`}
         >
-          <a href={`/blog/${post.slug}`} class="block">
+          <a href={`/blog/${post.slug}`} class="flex flex-col flex-grow">
             <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors leading-tight">
               {post.data.title}
             </h3>
@@ -101,7 +101,7 @@ const featuredProjects = [
             </p>
             <p class="text-gray-700 dark:text-gray-300 mb-5 leading-relaxed line-clamp-3">{post.data.description}</p>
             {post.data.tags && (
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2 mt-auto">
                 {post.data.tags.slice(0, 3).map((tag) => (
                   <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 rounded-full text-xs font-semibold border border-primary/20">
                     {tag}
@@ -130,7 +130,7 @@ const featuredProjects = [
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {featuredProjects.map((project, index) => (
           <article 
-            class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-2 transition-all duration-300"
+            class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-2 transition-all duration-300 flex flex-col"
             style={`animation-delay: ${index * 100}ms`}
           >
             <div class="flex items-start justify-between mb-4">
@@ -147,7 +147,7 @@ const featuredProjects = [
               </svg>
             </div>
             
-            <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+            <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed flex-grow">{project.description}</p>
             
             <div class="flex items-center gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
               <span class="flex items-center gap-1">
