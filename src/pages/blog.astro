@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { getReadingTime } from '../content/config';
+import { getReadingTime, isPostPublished } from '../content/config';
 
 const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const publishedPosts = allPosts.filter(isPostPublished);
+const sortedPosts = publishedPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout 
@@ -12,28 +13,43 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
   description="Alle blog artikelen over software development"
 >
   <section class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-16">
-    <div class="mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 border-l-4 border-primary pl-4">Blog</h1>
-      <p class="text-xl text-gray-600">Alle artikelen over software development, .NET, Azure en meer.</p>
+    <div class="mb-16">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-gray-900 dark:text-white border-l-4 border-primary pl-6 leading-tight">Blog</h1>
+      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl">Alle artikelen over software development, .NET, Azure en meer.</p>
     </div>
     
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {sortedPosts.map((post) => (
-        <article class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md hover:border-primary transition-all">
-          <a href={`/blog/${post.slug}`}>
-            <h2 class="text-xl font-semibold mb-2 text-gray-900 hover:text-primary transition-colors">{post.data.title}</h2>
-            <p class="text-sm text-gray-500 mb-3">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {sortedPosts.map((post, index) => (
+        <article 
+          class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 fade-in"
+          style={`animation-delay: ${index * 50}ms`}
+        >
+          <a href={`/blog/${post.slug}`} class="block">
+            <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors leading-tight">
+              {post.data.title}
+            </h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
               {post.data.pubDate.toLocaleDateString('nl-NL', {
                 year: 'numeric',
-                month: 'long',
+                month: 'short',
                 day: 'numeric'
-              })} • {getReadingTime(post.body)}
+              })}
+              <span class="mx-1">•</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              {getReadingTime(post.body)}
             </p>
-            <p class="text-gray-700 mb-4">{post.data.description}</p>
+            <p class="text-gray-700 dark:text-gray-300 mb-5 leading-relaxed line-clamp-3">{post.data.description}</p>
             {post.data.tags && (
               <div class="flex flex-wrap gap-2">
-                {post.data.tags.map((tag) => (
-                  <span class="px-3 py-1 bg-blue-50 text-primary rounded text-xs font-medium">{tag}</span>
+                {post.data.tags.slice(0, 3).map((tag) => (
+                  <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 rounded-full text-xs font-semibold border border-primary/20">
+                    {tag}
+                  </span>
                 ))}
               </div>
             )}
@@ -43,3 +59,28 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
     </div>
   </section>
 </Layout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

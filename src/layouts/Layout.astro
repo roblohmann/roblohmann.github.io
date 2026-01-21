@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from '../components/ThemeToggle.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -6,10 +8,11 @@ interface Props {
 }
 
 const { title, description, hideHeaderTitle = false } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -17,33 +20,64 @@ const { title, description, hideHeaderTitle = false } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      // Prevent FOUC (Flash of Unstyled Content) for dark mode
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
-  <body class="bg-blue-50 text-gray-900 flex flex-col min-h-screen">
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+  <body class="bg-blue-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen transition-colors">
+    <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 shadow-sm transition-all">
       <nav class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16">
-        <div class="flex items-center h-16">
+        <div class="flex items-center h-16 gap-6">
           {!hideHeaderTitle && (
-            <a href="/" class="text-2xl font-bold text-gray-900 hover:text-primary transition-colors">
+            <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">
               Rob Lohmann
             </a>
           )}
-          <div class="flex gap-8 ml-auto">
-            <a href="/" class="text-gray-700 hover:text-primary transition-colors font-medium relative group">
+          <div class="flex gap-8 ml-auto items-center">
+            <a 
+              href="/" 
+              class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/' ? 'text-primary' : ''}`}
+            >
               Home
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+              <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </a>
-            <a href="/blog" class="text-gray-700 hover:text-primary transition-colors font-medium relative group">
+            <a 
+              href="/blog" 
+              class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}
+            >
               Blog
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+              <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath.startsWith('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </a>
-            <a href="/portfolio" class="text-gray-700 hover:text-primary transition-colors font-medium relative group">
+            <a 
+              href="/portfolio" 
+              class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/portfolio' ? 'text-primary' : ''}`}
+            >
               Portfolio
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+              <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </a>
-            <a href="/about" class="text-gray-700 hover:text-primary transition-colors font-medium relative group">
+            <a 
+              href="/about" 
+              class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/about' ? 'text-primary' : ''}`}
+            >
               About
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+              <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </a>
+            <ThemeToggle />
           </div>
         </div>
       </nav>
@@ -51,10 +85,10 @@ const { title, description, hideHeaderTitle = false } = Astro.props;
     <main class="flex-grow">
       <slot />
     </main>
-    <footer class="bg-white border-t border-gray-200">
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors">
       <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-8">
-        <p class="text-center text-gray-600 mb-2">&copy; 2020 - {new Date().getFullYear()} Rob Lohmann. All rights reserved.</p>
-        <p class="text-center text-gray-500 text-sm">
+        <p class="text-center text-gray-600 dark:text-gray-400 mb-2">&copy; 2020 - {new Date().getFullYear()} Rob Lohmann. All rights reserved.</p>
+        <p class="text-center text-gray-500 dark:text-gray-500 text-sm">
           Gebouwd met 
           <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Astro</a>, 
           <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Tailwind CSS</a> en 

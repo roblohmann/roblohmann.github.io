@@ -10,39 +10,56 @@ const { title, description, pubDate, updatedDate, tags, readingTime } = Astro.pr
 ---
 
 <Layout title={title} description={description}>
-  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <header class="mb-8 pb-8 border-b border-gray-200">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">{title}</h1>
-      <p class="text-gray-600 text-sm mb-4">
-        <time datetime={pubDate.toISOString()}>
-          {pubDate.toLocaleDateString('nl-NL', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })}
-        </time>
-        {readingTime && (
-          <span> • {readingTime} leestijd</span>
-        )}
-        {updatedDate && (
-          <span> • Bijgewerkt: <time datetime={updatedDate.toISOString()}>
-            {updatedDate.toLocaleDateString('nl-NL', {
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <header class="mb-12 pb-8 border-b border-gray-200 dark:border-gray-800">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-gray-900 dark:text-white leading-tight">{title}</h1>
+      <div class="flex flex-wrap items-center gap-3 text-gray-600 dark:text-gray-400 text-base mb-6">
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time datetime={pubDate.toISOString()}>
+            {pubDate.toLocaleDateString('nl-NL', {
               year: 'numeric',
               month: 'long',
               day: 'numeric'
             })}
-          </time></span>
+          </time>
+        </span>
+        {readingTime && (
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            {readingTime} leestijd
+          </span>
         )}
-      </p>
+        {updatedDate && (
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            Bijgewerkt: <time datetime={updatedDate.toISOString()}>
+              {updatedDate.toLocaleDateString('nl-NL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+          </span>
+        )}
+      </div>
       {tags && tags.length > 0 && (
         <div class="flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm">{tag}</span>
+            <span class="px-4 py-2 bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 rounded-full text-sm font-semibold border border-primary/20">
+              {tag}
+            </span>
           ))}
         </div>
       )}
     </header>
-    <div class="prose prose-lg max-w-none">
+    <div class="prose prose-lg dark:prose-invert max-w-none">
       <slot />
     </div>
   </article>
@@ -53,44 +70,79 @@ const { title, description, pubDate, updatedDate, tags, readingTime } = Astro.pr
     color: #374151;
   }
   
+  .dark .prose {
+    color: #d1d5db;
+  }
+  
   .prose h1 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: #111827;
+    line-height: 1.2;
+  }
+  
+  .dark .prose h1 {
+    color: #f9fafb;
   }
   
   .prose h2 {
-    font-size: 1.875rem;
+    font-size: 2rem;
     font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    color: #1f2937;
+    line-height: 1.3;
+  }
+  
+  .dark .prose h2 {
+    color: #f3f4f6;
   }
   
   .prose h3 {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #374151;
+    line-height: 1.4;
+  }
+  
+  .dark .prose h3 {
+    color: #e5e7eb;
   }
   
   .prose p {
-    margin-bottom: 1.25rem;
-    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.125rem;
   }
   
   .prose a {
-    color: #0066cc;
+    color: #0078D4;
     text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    transition: all 0.2s;
   }
   
   .prose a:hover {
-    color: #0052a3;
+    color: #1E3A8A;
+    text-decoration-thickness: 3px;
+  }
+  
+  .dark .prose a {
+    color: #60a5fa;
+  }
+  
+  .dark .prose a:hover {
+    color: #93c5fd;
   }
   
   .prose ul, .prose ol {
-    margin-bottom: 1.25rem;
-    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
   }
   
   .prose ul {
@@ -102,44 +154,78 @@ const { title, description, pubDate, updatedDate, tags, readingTime } = Astro.pr
   }
   
   .prose li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
   }
   
   .prose pre {
     background: #1f2937;
     color: #f3f4f6;
-    padding: 1rem;
-    border-radius: 0.5rem;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
     overflow-x: auto;
-    margin-bottom: 1.25rem;
+    margin: 2rem 0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .prose pre {
+    background: #0f172a;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
   }
   
   .prose code {
     background: #f3f4f6;
     color: #1f2937;
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.25rem;
-    font-size: 0.875em;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+  
+  .dark .prose code {
+    background: #374151;
+    color: #f9fafb;
   }
   
   .prose pre code {
     background: none;
     color: #f3f4f6;
     padding: 0;
+    font-weight: 400;
   }
   
   .prose img {
     max-width: 100%;
     height: auto;
-    border-radius: 0.5rem;
-    margin: 1.5rem 0;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .prose img {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
   }
   
   .prose blockquote {
-    border-left: 4px solid #0066cc;
-    padding-left: 1rem;
+    border-left: 4px solid #0078D4;
+    padding-left: 1.5rem;
     font-style: italic;
     color: #6b7280;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
+    font-size: 1.125rem;
+  }
+  
+  .dark .prose blockquote {
+    border-left-color: #60a5fa;
+    color: #9ca3af;
+  }
+  
+  .prose strong {
+    font-weight: 700;
+    color: #111827;
+  }
+  
+  .dark .prose strong {
+    color: #f9fafb;
   }
 </style>
