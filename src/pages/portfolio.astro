@@ -71,7 +71,7 @@ const projects = [
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {projects.map((project, index) => (
         <article 
-          class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-2 transition-all duration-300 fade-in"
+          class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-2 transition-all duration-300 fade-in flex flex-col"
           style={`animation-delay: ${index * 50}ms`}
         >
           {project.featured && (
@@ -99,7 +99,7 @@ const projects = [
             </svg>
           </div>
           
-          <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+          <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed flex-grow">{project.description}</p>
           
           <div class="flex items-center gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
             <span class="flex items-center gap-1">
