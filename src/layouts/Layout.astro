@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro';
+import HamburgerMenu from '../components/HamburgerMenu.astro';
 
 interface Props {
   title: string;
@@ -9,6 +10,11 @@ interface Props {
 
 const { title, description, hideHeaderTitle = false } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+}
 ---
 
 <!doctype html>
@@ -43,44 +49,76 @@ const currentPath = Astro.url.pathname;
     <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 shadow-sm transition-all">
       <nav class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16">
         <div class="flex items-center h-16 gap-6">
+          <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors block md:hidden">
+            .Rob
+          </a>
           {!hideHeaderTitle && (
-            <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">
+            <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors hidden md:block">
               Rob Lohmann
             </a>
           )}
           <div class="flex gap-8 ml-auto items-center">
-            <a 
-              href="/" 
-              class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/' ? 'text-primary' : ''}`}
-            >
-              Home
-              <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-            </a>
-            <a 
-              href="/blog" 
-              class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}
-            >
-              Blog
-              <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath.startsWith('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-            </a>
-            <a 
-              href="/portfolio" 
-              class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/portfolio' ? 'text-primary' : ''}`}
-            >
-              Portfolio
-              <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-            </a>
-            <a 
-              href="/about" 
-              class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/about' ? 'text-primary' : ''}`}
-            >
-              About
-              <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-            </a>
-            <ThemeToggle />
+            <div class="hidden md:flex gap-8 items-center">
+              <a 
+                href="/" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/' ? 'text-primary' : ''}`}
+              >
+                Home
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/blog" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}
+              >
+                Blog
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath.startsWith('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/portfolio" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/portfolio' ? 'text-primary' : ''}`}
+              >
+                Portfolio
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/about" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/about' ? 'text-primary' : ''}`}
+              >
+                About
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <ThemeToggle />
+            </div>
+            <div class="md:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <button id="hamburger-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary md:hidden">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden transition-all hidden"> 
+          <div class="flex flex-col gap-4 py-4 px-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-md">
+            <a href="/" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/' ? 'text-primary' : ''}`}>Home</a>
+            <a href="/blog" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}>Blog</a>
+            <a href="/portfolio" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/portfolio' ? 'text-primary' : ''}`}>Portfolio</a>
+            <a href="/about" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/about' ? 'text-primary' : ''}`}>About</a>
           </div>
         </div>
       </nav>
+      <script is:inline>
+        // Hamburger menu
+        const btn = document.getElementById('hamburger-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+          btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+          });
+        }
+      </script>
     </header>
     <main class="flex-grow">
       <slot />
