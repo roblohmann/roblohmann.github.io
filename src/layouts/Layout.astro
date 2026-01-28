@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro';
 import HamburgerMenu from '../components/HamburgerMenu.astro';
+import { getGoogleAnalyticsId } from '../config/analytics';
 
 interface Props {
   title: string;
@@ -26,6 +27,23 @@ function toggleMenu() {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      {`
+        (function() {
+          var id = (${getGoogleAnalyticsId.toString()})();
+          if (id) {
+            var s1 = document.createElement('script');
+            s1.async = true;
+            s1.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+            document.head.appendChild(s1);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', id);
+          }
+        })();
+      `}
+    </script>
     <script is:inline>
       // Prevent FOUC (Flash of Unstyled Content) for dark mode
       const theme = (() => {
