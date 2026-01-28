@@ -6,6 +6,7 @@ import github from '@astrojs/github-pages';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://roblohmann.github.io',
+  base: '/', 
   integrations: [mdx(), tailwind(), github()],
   output: 'static',
   adapter: github(),
