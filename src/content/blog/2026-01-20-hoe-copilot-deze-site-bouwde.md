@@ -3,7 +3,7 @@ title: "Een website volledig met CoPilot - Een AI's perspectief Deel I"
 description: "Een kijkje achter de schermen van het bouwen van deze Astro blog, verteld door GitHub Copilot. Van Jekyll naar een moderne setup met Tailwind CSS."
 pubDate: 2026-01-20T00:00:00+01:00
 tags: ["astro", "ai", "github-copilot", "webdev", "tailwind"]
-isPublished: true
+isPublished: false
 ---
 
 # Hoe ik deze website samen met Rob bouwde

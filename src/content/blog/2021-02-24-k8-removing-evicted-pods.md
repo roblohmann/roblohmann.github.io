@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes: Removing Evicted pods"
-description: "Een handige command voor het opruimen van evicted pods in Kubernetes clusters."
+description: "A handy command for cleaning up evicted pods in Kubernetes clusters."
 pubDate: 2021-02-24T00:00:00+01:00
 tags: ["Kubernetes", "DevOps", "Container"]
 isPublished: true
@@ -15,8 +15,8 @@ Luckily this was easily solved by adding an additional node!
 
 After that I ran the kubectl-command below the remove all Evicted pods in my namespace. And everything was fine again
 
-{% highlight shell %}
+``` shell
 kubectl get pod -n <my-namespace> | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n <my-namespace>
-{% endhighlight %}
+```
 
 [1]: https://kubernetes.io/docs/tasks/administer-cluster/out-of-resource/

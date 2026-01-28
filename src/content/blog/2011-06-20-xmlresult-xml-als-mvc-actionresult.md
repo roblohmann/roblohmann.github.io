@@ -24,15 +24,15 @@ Dit zijn lang niet alle mogelijkheden die deze library biedt. Zo wordt er ook ee
 
 Zo kan onderstaande regel;
 
-{% highlight C# %}
+``` C#
 <%= Html.ActionLink("Delete Dinner", "Delete", "Dinners", new { id = Model.DinnerID }, null)%>
-{% endhighlight %}
+```
 
 vervangen worden door;
 
-{% highlight C# %}
+``` C#
 <%= Html.ActionLink("Delete Dinner", MVC.Dinners.Delete(Model.DinnerID))%>
-{% endhighlight %}
+```
 
 Deze onderdelen maken allemaal deel uit van MVCContrib. Op codeplex is hierover meer te vinden op http://mvccontrib.codeplex.com/
 

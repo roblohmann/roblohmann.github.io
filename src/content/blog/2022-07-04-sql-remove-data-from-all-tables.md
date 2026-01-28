@@ -1,6 +1,6 @@
 ---
 title: "SQL - How to clear all data in all tables"
-description: "Een SQL script om alle data uit alle tabellen in een database te verwijderen zonder de structuur aan te tasten."
+description: "An SQL script to remove all data from every table in a database without affecting the structure."
 pubDate: 2022-07-04T00:00:00+02:00
 tags: ["SQL", "Database", "Scripts"]
 isPublished: true
@@ -13,7 +13,7 @@ Since I didn’t feel much like manually truncating all the tables manually (or 
 
 This is the full script the way I used it.
 
-{% highlight sql %}
+```SQL
 DECLARE @TableName NVARCHAR(MAX);
 DECLARE tableCursor CURSOR FAST_FORWARD 
 FOR 
@@ -36,6 +36,6 @@ FETCH NEXT FROM tableCursor INTO @TableName
 END
 CLOSE tableCursor
 DEALLOCATE tableCursor
-{% endhighlight %}
+```
 
 [1]: https://stackoverflow.com/a/12713713

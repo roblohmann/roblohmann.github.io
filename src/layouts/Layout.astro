@@ -1,7 +1,6 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro';
 import HamburgerMenu from '../components/HamburgerMenu.astro';
-import { GOOGLE_ANALYTICS_ID } from '../config/analytics';
 
 interface Props {
   title: string;
@@ -34,7 +33,7 @@ function toggleMenu() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          
+
           gtag('config', 'G-VZ8NCLGLS5');
         `}</script>
       </>

@@ -1,6 +1,6 @@
 ---
 title: "Update targetframework for .NET Core projects with PowerShell"
-description: "PowerShell script om de targetframework versie van .NET Core projecten automatisch bij te werken."
+description: "PowerShell script to automatically update the target framework version of .NET Core projects."
 pubDate: 2016-12-06T00:00:00+01:00
 tags: ["PowerShell", ".NET Core", "Automation"]
 isPublished: true
@@ -15,7 +15,7 @@ Fortunately it didn’t cost me much time to create a script that could do this 
 
 Below is the script. Which is also [hosted on my GitHub][1] by the way!
 
-{% highlight C# %}
+``` powershell
 #find all csproj files recursive in this directory
 $paths = Get-ChildItem -include *.csproj -Recurse
 
@@ -62,6 +62,6 @@ foreach($pathobject in $paths)
         $doc.Save($pathobject)
     }    
 }
-{% endhighlight %}
+```
 
 [1]: https://github.com/roblohmann/Azure-CLI-Scripts/blob/master/Powershell/update-framework-netcore.ps1 "Script to update targetframework"

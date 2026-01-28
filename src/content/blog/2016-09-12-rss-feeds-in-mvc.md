@@ -12,7 +12,7 @@ De syndicationfeed-class is al enige tijd onderdeel van het .NET-framework en bi
 
 Dit levert uiteindelijk de volgende code op;
 
-{% highlight C# %}
+``` C#
 public RssActionResult RssFeedBlog()
 {
 	var items = new List<SyndicationItem>();
@@ -30,7 +30,7 @@ public RssActionResult RssFeedBlog()
 	}
 
 	re
-{% endhighlight %}
+```
 
 Waar ik eerder veel werk moest verrichten om zelf mijn XML op te bouwen, is dit nu een fluitje van een cent!
 
