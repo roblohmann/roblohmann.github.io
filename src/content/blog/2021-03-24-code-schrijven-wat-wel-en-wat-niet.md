@@ -1,7 +1,7 @@
 ---
 title: "Code schrijven, wat wel en wat niet?"
 description: "Mijn opvattingen over code kwaliteit, coding standards en best practices in .NET development."
-pubDate: 2021-03-24
+pubDate: 2021-03-24T00:00:00+01:00
 tags: [".NET", "Best Practices", "Code Quality"]
 isPublished: true
 ---

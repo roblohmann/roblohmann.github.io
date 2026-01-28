@@ -1,7 +1,7 @@
 ---
 title: "Building Docker containers with Azure DevOps"
 description: "Hoe je Docker containers automatisch kunt builden en deployen met Azure DevOps pipelines."
-pubDate: 2020-02-04
+pubDate: 2020-02-04T00:00:00+01:00
 tags: ["Docker", "Azure DevOps", "CI/CD", "Kubernetes"]
 isPublished: true
 ---

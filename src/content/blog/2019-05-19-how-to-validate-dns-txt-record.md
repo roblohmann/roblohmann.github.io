@@ -1,7 +1,7 @@
 ---
 title: "How to validate a DNS TXT-record"
 description: "Stap-voor-stap handleiding voor het valideren en controleren van DNS TXT records."
-pubDate: 2019-05-19
+pubDate: 2019-05-19T00:00:00+02:00
 tags: ["DNS", "Networking", "DevOps"]
 isPublished: true
 ---

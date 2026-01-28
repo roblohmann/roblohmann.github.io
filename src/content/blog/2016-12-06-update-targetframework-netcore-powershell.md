@@ -1,7 +1,7 @@
 ---
 title: "Update targetframework for .NET Core projects with PowerShell"
 description: "PowerShell script om de targetframework versie van .NET Core projecten automatisch bij te werken."
-pubDate: 2016-12-06
+pubDate: 2016-12-06T00:00:00+01:00
 tags: ["PowerShell", ".NET Core", "Automation"]
 isPublished: true
 ---

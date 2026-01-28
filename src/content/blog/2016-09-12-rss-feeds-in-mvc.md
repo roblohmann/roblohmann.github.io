@@ -1,7 +1,7 @@
 ---
 title: "RSS-Feeds in MVC"
 description: "Een praktische handleiding voor het implementeren van RSS feeds in ASP.NET MVC applicaties."
-pubDate: 2016-09-12
+pubDate: 2016-09-12T00:00:00+02:00
 tags: ["MVC", "ASP.NET", "RSS"]
 isPublished: true
 ---

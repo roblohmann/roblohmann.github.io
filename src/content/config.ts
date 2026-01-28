@@ -28,16 +28,20 @@ export function getReadingTime(content: string): string {
 export function isPostPublished(post: any): boolean {
   const now = new Date();
   
-  // Als isPublished false is, niet tonen
-  if (post.data.isPublished === false) {
+  // Alleen tonen als expliciet isPublished: true
+  if (post.data.isPublished !== true) {
     return false;
   }
-  
   // Als er een publishDate is, alleen tonen als die in het verleden/heden is
   if (post.data.publishDate) {
-    return post.data.publishDate <= now;
+    if (post.data.publishDate > now) {
+      return false;
+    }
   }
-  
-  // Anders standaard wel tonen
+  // Controleer pubDate
+  if (post.data.pubDate && post.data.pubDate > now) {
+    return false;
+  }
+  // Anders tonen
   return true;
 }

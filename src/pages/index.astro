@@ -8,7 +8,7 @@ import { getReadingTime, isPostPublished } from '../content/config';
 const allPosts = await getCollection('blog');
 const publishedPosts = allPosts.filter(isPostPublished);
 const sortedPosts = publishedPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const featuredPost = sortedPosts[0];
+const latestPosts = sortedPosts.slice(0, 6);
 
 const socials = [
   { name: 'GitHub', url: 'https://github.com/roblohmann', icon: '🔗', iconType: 'github' as const },
@@ -70,23 +70,11 @@ const featuredProjects: Project[] = []
     socials={socials}
   />
   
-  <!-- Featured Blog Post -->
-  <section class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-16">
-    <FeaturedPost 
-      title={featuredPost.data.title}
-      description={featuredPost.data.description}
-      slug={featuredPost.slug}
-      pubDate={featuredPost.data.pubDate}
-      tags={featuredPost.data.tags}
-      readingTime={getReadingTime(featuredPost.body)}
-    />
-  </section>
-  
-  <!-- Latest Articles -->
+  <!-- Laatste artikelen -->
   <section class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-16">
     <h2 class="text-4xl font-bold mb-12 text-gray-900 dark:text-white border-l-4 border-primary pl-4">Laatste artikelen</h2>
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 fade-in-section">
-      {sortedPosts.slice(1, 7).map((post, index) => (
+      {latestPosts.map((post, index) => (
         <article 
           class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 flex flex-col"
           style={`animation-delay: ${index * 100}ms`}

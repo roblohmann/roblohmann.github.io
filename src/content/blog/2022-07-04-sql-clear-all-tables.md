@@ -1,7 +1,7 @@
 ---
 title: "SQL - How to clear all data in all tables"
 description: "Een SQL script om alle data uit alle tabellen in een database te verwijderen zonder de structuur aan te tasten."
-pubDate: 2022-07-04
+pubDate: 2022-07-04T00:00:00+02:00
 tags: ["SQL", "Database", "Scripts"]
 isPublished: true
 ---

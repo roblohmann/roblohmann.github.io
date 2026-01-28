@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes: Removing Evicted pods"
 description: "Een handige command voor het opruimen van evicted pods in Kubernetes clusters."
-pubDate: 2021-02-24
+pubDate: 2021-02-24T00:00:00+01:00
 tags: ["Kubernetes", "DevOps", "Container"]
 isPublished: true
 ---

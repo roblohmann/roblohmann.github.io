@@ -1,7 +1,7 @@
 ---
 title: "MVC3, wat zijn mijn ervaringen tot nu toe?"
 description: "Mijn ervaringen met Microsoft MVC3, de Razor View Engine en de nieuwe features zoals output caching op pagina niveau."
-pubDate: 2011-04-30
+pubDate: 2011-04-30T00:00:00+02:00
 tags: ["MVC", "ASP.NET", ".NET"]
 isPublished: true
 ---

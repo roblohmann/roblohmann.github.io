@@ -1,7 +1,7 @@
 ---
 title: "Azure CLI: How to add a nodepool to AKS"
 description: "Gebruik Azure CLI om een nieuwe node pool toe te voegen aan een bestaand Azure Kubernetes Service (AKS) cluster."
-pubDate: 2025-07-10
+pubDate: 2025-07-10T00:00:00+02:00
 tags: ["Azure", "Kubernetes", "AKS", "Azure CLI"]
 isPublished: true
 ---

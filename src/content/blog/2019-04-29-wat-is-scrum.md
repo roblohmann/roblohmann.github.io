@@ -1,7 +1,7 @@
 ---
 title: "Wat is scrum?"
 description: "Een introductie tot Scrum: de agile methodiek voor projectmanagement en softwareontwikkeling."
-pubDate: 2019-04-29
+pubDate: 2019-04-29T00:00:00+02:00
 tags: ["Scrum", "Agile", "Projectmanagement"]
 isPublished: true
 ---
