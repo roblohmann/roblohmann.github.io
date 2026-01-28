@@ -33,7 +33,7 @@
     } else {
       document.documentElement.classList.remove('dark');
     }
-    window.localStorage.setItem('theme', theme);
+  window.localStorage.setItem('theme', theme ?? 'dark');
   }
   setInitialTheme();
 
