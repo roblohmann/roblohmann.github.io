@@ -28,23 +28,15 @@ function toggleMenu() {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     {!(Astro.request?.url?.startsWith('http://localhost') || Astro.request?.url?.startsWith('http://127.0.0.1')) && (
-      <script is:inline>
-        {`
-          (function() {
-            var id = "G-VZ8NCLGLS5";
-            if (id) {
-              var s1 = document.createElement('script');
-              s1.async = true;
-              s1.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
-              document.head.appendChild(s1);
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', id);
-            }
-          })();
-        `}
-      </script>
+      <>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ8NCLGLS5"></script>
+        <script is:inline>{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-VZ8NCLGLS5');
+        `}</script>
+      </>
     )}
     <script is:inline>
       // Prevent FOUC (Flash of Unstyled Content) for dark mode

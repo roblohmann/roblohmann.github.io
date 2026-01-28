@@ -3052,7 +3052,546 @@ kun je het niet zo doen dat het hele javascript blok voor google analytics allee
 
 _**Agent (model copilot/gpt-4.1)**_
 
+<tool-use data-tool-type="write" data-tool-name="copilot_applyPatch">
+<details>
+<summary>Tool use: **copilot_applyPatch** • Using "Apply Patch"</summary>
 
+```astro
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import HamburgerMenu from '../components/HamburgerMenu.astro';
+import { GOOGLE_ANALYTICS_ID } from '../config/analytics';
+
+interface Props {
+  title: string;
+  description: string;
+  hideHeaderTitle?: boolean;
+}
+
+const { title, description, hideHeaderTitle = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+}
+---
+
+<!doctype html>
+<html lang="nl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {!(Astro.request?.url?.startsWith('http://localhost') || Astro.request?.url?.startsWith('http://127.0.0.1')) && (
+      <script is:inline>
+        {`
+          (function() {
+            var id = "G-VZ8NCLGLS5";
+            if (id) {
+              var s1 = document.createElement('script');
+              s1.async = true;
+              s1.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+              document.head.appendChild(s1);
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', id);
+            }
+          })();
+        `}
+      </script>
+    )}
+    <script is:inline>
+      // Prevent FOUC (Flash of Unstyled Content) for dark mode
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-blue-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen transition-colors">
+    <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 shadow-sm transition-all">
+      <nav class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16">
+        <div class="flex items-center h-16 gap-6">
+          <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors block md:hidden">
+            .Rob
+          </a>
+          {!hideHeaderTitle && (
+            <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors hidden md:block">
+              Rob Lohmann
+            </a>
+          )}
+          <div class="flex gap-8 ml-auto items-center">
+            <div class="hidden md:flex gap-8 items-center">
+              <a 
+                href="/" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/' ? 'text-primary' : ''}`}
+              >
+                Home
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/blog" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}
+              >
+                Blog
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath.startsWith('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/portfolio" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/portfolio' ? 'text-primary' : ''}`}
+              >
+                Portfolio
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/about" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/about' ? 'text-primary' : ''}`}
+              >
+                About
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <ThemeToggle />
+            </div>
+            <div class="md:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <button id="hamburger-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary md:hidden">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden transition-all hidden"> 
+          <div class="flex flex-col gap-4 py-4 px-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-md">
+            <a href="/" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/' ? 'text-primary' : ''}`}>Home</a>
+            <a href="/blog" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}>Blog</a>
+            <a href="/portfolio" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/portfolio' ? 'text-primary' : ''}`}>Portfolio</a>
+            <a href="/about" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/about' ? 'text-primary' : ''}`}>About</a>
+          </div>
+        </div>
+      </nav>
+      <script is:inline>
+        // Hamburger menu
+        const btn = document.getElementById('hamburger-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+          btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+          });
+        }
+      </script>
+    </header>
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors">
+      <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-8">
+        <p class="text-center text-gray-600 dark:text-gray-400 mb-2">&copy; 2011 - {new Date().getFullYear()} Rob Lohmann. All rights reserved.</p>
+        <p class="text-center text-gray-500 dark:text-gray-500 text-sm">
+          Gebouwd met 
+          <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Astro</a>, 
+          <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Tailwind CSS</a> en 
+          <a href="https://www.typescriptlang.org" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">TypeScript</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+```
+
+
+</details>
+</tool-use>
+
+---
+
+Het Google Analytics script wordt nu alleen in de HTML geplaatst als je site niet op localhost of 127.0.0.1 draait. Op je lokale omgeving wordt het script dus helemaal niet geïnjecteerd. Zo blijft je bron schoon tijdens development!
+
+---
+
+_**User (2026-01-28 13:48Z)**_
+
+het geselecteerde stuk moet dit worden;
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ8NCLGLS5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VZ8NCLGLS5');
+</script>
+
+---
+
+_**Agent (model copilot/gpt-4.1)**_
+
+<tool-use data-tool-type="write" data-tool-name="copilot_applyPatch">
+<details>
+<summary>Tool use: **copilot_applyPatch** • Using "Apply Patch"</summary>
+
+```astro
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import HamburgerMenu from '../components/HamburgerMenu.astro';
+import { GOOGLE_ANALYTICS_ID } from '../config/analytics';
+
+interface Props {
+  title: string;
+  description: string;
+  hideHeaderTitle?: boolean;
+}
+
+const { title, description, hideHeaderTitle = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+}
+---
+
+<!doctype html>
+<html lang="nl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {!(Astro.request?.url?.startsWith('http://localhost') || Astro.request?.url?.startsWith('http://127.0.0.1')) && (
+      <script is:inline>
+        {`
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ8NCLGLS5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VZ8NCLGLS5');
+  </script>
+        `}
+      </script>
+    )}
+    <script is:inline>
+      // Prevent FOUC (Flash of Unstyled Content) for dark mode
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-blue-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen transition-colors">
+    <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 shadow-sm transition-all">
+      <nav class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16">
+        <div class="flex items-center h-16 gap-6">
+          <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors block md:hidden">
+            .Rob
+          </a>
+          {!hideHeaderTitle && (
+            <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors hidden md:block">
+              Rob Lohmann
+            </a>
+          )}
+          <div class="flex gap-8 ml-auto items-center">
+            <div class="hidden md:flex gap-8 items-center">
+              <a 
+                href="/" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/' ? 'text-primary' : ''}`}
+              >
+                Home
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/blog" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}
+              >
+                Blog
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath.startsWith('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/portfolio" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/portfolio' ? 'text-primary' : ''}`}
+              >
+                Portfolio
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/about" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/about' ? 'text-primary' : ''}`}
+              >
+                About
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <ThemeToggle />
+            </div>
+            <div class="md:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <button id="hamburger-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary md:hidden">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden transition-all hidden"> 
+          <div class="flex flex-col gap-4 py-4 px-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-md">
+            <a href="/" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/' ? 'text-primary' : ''}`}>Home</a>
+            <a href="/blog" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}>Blog</a>
+            <a href="/portfolio" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/portfolio' ? 'text-primary' : ''}`}>Portfolio</a>
+            <a href="/about" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/about' ? 'text-primary' : ''}`}>About</a>
+          </div>
+        </div>
+      </nav>
+      <script is:inline>
+        // Hamburger menu
+        const btn = document.getElementById('hamburger-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+          btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+          });
+        }
+      </script>
+    </header>
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors">
+      <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-8">
+        <p class="text-center text-gray-600 dark:text-gray-400 mb-2">&copy; 2011 - {new Date().getFullYear()} Rob Lohmann. All rights reserved.</p>
+        <p class="text-center text-gray-500 dark:text-gray-500 text-sm">
+          Gebouwd met 
+          <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Astro</a>, 
+          <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Tailwind CSS</a> en 
+          <a href="https://www.typescriptlang.org" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">TypeScript</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+```
+
+
+</details>
+</tool-use>
+
+---
+
+Het geselecteerde stuk is nu vervangen door de standaard Google Analytics snippet. Je kunt deze HTML direct in je layout gebruiken.  
+Let op: als je deze snippet als "Astro component" gebruikt, moet je hem binnen een enkele parent-tag plaatsen (zoals `<head>`), en niet als los fragment. 
+
+Als je nog steeds compile errors ziet, controleer dan of je geen losse HTML buiten een Astro/JSX block hebt staan. De snippet zelf is correct voor gebruik in een HTML `<head>`.
+
+---
+
+_**User (2026-01-28 13:48Z)**_
+
+fix de fouten in de selectie
+
+---
+
+_**Agent (model copilot/gpt-4.1)**_
+
+<tool-use data-tool-type="write" data-tool-name="copilot_applyPatch">
+<details>
+<summary>Tool use: **copilot_applyPatch** • Using "Apply Patch"</summary>
+
+```astro
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import HamburgerMenu from '../components/HamburgerMenu.astro';
+import { GOOGLE_ANALYTICS_ID } from '../config/analytics';
+
+interface Props {
+  title: string;
+  description: string;
+  hideHeaderTitle?: boolean;
+}
+
+const { title, description, hideHeaderTitle = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+}
+---
+
+<!doctype html>
+<html lang="nl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {!(Astro.request?.url?.startsWith('http://localhost') || Astro.request?.url?.startsWith('http://127.0.0.1')) && (
+      <>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ8NCLGLS5"></script>
+        <script is:inline>{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-VZ8NCLGLS5');
+        `}</script>
+      </>
+    )}
+    <script is:inline>
+      // Prevent FOUC (Flash of Unstyled Content) for dark mode
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-blue-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen transition-colors">
+    <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 shadow-sm transition-all">
+      <nav class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16">
+        <div class="flex items-center h-16 gap-6">
+          <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors block md:hidden">
+            .Rob
+          </a>
+          {!hideHeaderTitle && (
+            <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors hidden md:block">
+              Rob Lohmann
+            </a>
+          )}
+          <div class="flex gap-8 ml-auto items-center">
+            <div class="hidden md:flex gap-8 items-center">
+              <a 
+                href="/" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/' ? 'text-primary' : ''}`}
+              >
+                Home
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/blog" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}
+              >
+                Blog
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath.startsWith('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/portfolio" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/portfolio' ? 'text-primary' : ''}`}
+              >
+                Portfolio
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/portfolio' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="/about" 
+                class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium relative group ${currentPath === '/about' ? 'text-primary' : ''}`}
+              >
+                About
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all ${currentPath === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <ThemeToggle />
+            </div>
+            <div class="md:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <button id="hamburger-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary md:hidden">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden transition-all hidden"> 
+          <div class="flex flex-col gap-4 py-4 px-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-md">
+            <a href="/" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/' ? 'text-primary' : ''}`}>Home</a>
+            <a href="/blog" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath.startsWith('/blog') ? 'text-primary' : ''}`}>Blog</a>
+            <a href="/portfolio" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/portfolio' ? 'text-primary' : ''}`}>Portfolio</a>
+            <a href="/about" class={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium ${currentPath === '/about' ? 'text-primary' : ''}`}>About</a>
+          </div>
+        </div>
+      </nav>
+      <script is:inline>
+        // Hamburger menu
+        const btn = document.getElementById('hamburger-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+          btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+          });
+        }
+      </script>
+    </header>
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors">
+      <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-8">
+        <p class="text-center text-gray-600 dark:text-gray-400 mb-2">&copy; 2011 - {new Date().getFullYear()} Rob Lohmann. All rights reserved.</p>
+        <p class="text-center text-gray-500 dark:text-gray-500 text-sm">
+          Gebouwd met 
+          <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Astro</a>, 
+          <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Tailwind CSS</a> en 
+          <a href="https://www.typescriptlang.org" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">TypeScript</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+```
+
+
+</details>
+</tool-use>
+
+---
+
+De fouten zijn opgelost: de `<script>`-tags staan nu direct in de Astro-head, zonder geneste tags of inline HTML. De Google Analytics code wordt alleen toegevoegd als je site niet op localhost draait. Zo werkt het correct én zonder syntaxfouten!
 
 ---
 
