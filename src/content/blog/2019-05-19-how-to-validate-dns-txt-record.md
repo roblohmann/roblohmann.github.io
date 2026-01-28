@@ -15,7 +15,7 @@ nslookup -q=txt _acme-challenge.yourdomain.com
 {% endhighlight %}
 
 This will output something like;
-<img src="/images/2019/05/nslookup-result.png" />
+<img src="/public/images/blog/2019-05-19-how-to-validate-dns-txt-record/nslookup-result.png" />
 
 And that’s it, that is all you need to do!
 Besides this, it is also possible to fetch all TXT-records for a domain, this can be done with the following command;

@@ -32,6 +32,6 @@ Na een sprintreview houdt het scrumteam een **sprintretrospective**. In deze ret
 Persoonlijk vindt ik het scrum framework echt fantastisch werken. Maar moet het nu overal en altijd toegepast worden? Dat zeer zeker niet. Voor hele kleine organisaties of hele simpele projecten zijn er ook andere methoden die misschien wel beter werken. Scrum werkt vooral goed in complexe omgevingen.
 
 Om te bepalen of je in een complexe omgeving zit of niet kan er gebruik gemaakt worden van de stacey matrix;
-<img src="/images/2019/04/stacey-matrix.png" />
+<img src="/public/images/blog/2019-04-29-wat-is-scrum/stacey-matrix.png" />
 
 Scrum werkt vooral goed in complexe omgevingen omdat er niet eerst een onderzoek en plan vooraf nodig is. Je kunt gewoon beginnen met een requirement die helder is en gaandeweg kom je vanzelf nieuwe requirements tegen of worden de wensen en eisen van de product owner en stakeholders bijgesteld. Snel, in korte iteraties en efficient. Vooral transparantie naar de product owner en het tussentijds bijsturen zijn hier van belang.

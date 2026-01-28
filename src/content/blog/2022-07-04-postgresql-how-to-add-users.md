@@ -3,7 +3,7 @@ title: "PostgreSQL - How to add users"
 description: "Stap-voor-stap handleiding voor het aanmaken en beheren van gebruikers in PostgreSQL databases."
 pubDate: 2022-07-04T00:00:00+02:00
 tags: ["PostgreSQL", "Database", "SQL"]
-isPublished: true
+isPublished: false
 ---
 -- MORE INFO > https://docs.microsoft.com/en-us/azure/postgresql/howto-create-users
 

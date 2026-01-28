@@ -10,10 +10,10 @@ isPublished: true
 Foutmelding tijdens build proces dat NuGet.Config of project niet gevonden kon worden
 
 Oorzaak;
-<img src="/images/2020/docker-build-context-default.png" />
+<img src="/public/images/blog/2020-02-04-building-docker-containers-azure-devops/docker-build-context-default.png" />
 
 Goed;
-<img src="/images/2020/docker-build-context-proper.png" />
+<img src="/public/images/blog/2020-02-04-building-docker-containers-azure-devops/docker-build-context-proper.png" />
 
 2. Prepare your Kubernetes Cluster
 
