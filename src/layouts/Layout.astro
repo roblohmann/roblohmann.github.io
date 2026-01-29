@@ -29,13 +29,13 @@ function toggleMenu() {
     {!(Astro.request?.url?.startsWith('http://localhost') || Astro.request?.url?.startsWith('http://127.0.0.1')) && (
       <>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ8NCLGLS5"></script>
-        <script is:inline>{`
+        <script is:inline>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-VZ8NCLGLS5');
-        `}</script>
+        </script>
       </>
     )}
     <script is:inline>
