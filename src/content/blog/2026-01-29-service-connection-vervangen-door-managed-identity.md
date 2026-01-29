@@ -76,6 +76,48 @@ az aks update-credentials \
 
 Na het uitvoeren van dit commando is de waarschuwing opgelost en heeft je cluster weer een geldig secret.
 
+## Waarom is dit belangrijk voor de security van je cluster?
+
+Een verlopen of zwak beveiligd Service Principal secret vormt een direct security risico voor je AKS-cluster. Hier zijn de belangrijkste redenen waarom je dit serieus moet nemen:
+
+### Toegangscontrole en authenticatie
+
+Het Service Principal of Managed Identity is de identiteit waarmee je AKS-cluster zich authenticeert bij Azure-resources. Als het secret verloopt of gecompromitteerd raakt:
+
+- **Verlies van toegang**: Je cluster kan geen verbinding meer maken met essentiële Azure-diensten zoals Azure Container Registry (ACR), Azure Key Vault, of Azure Storage
+- **Service disruption**: Pods kunnen niet meer starten als ze container images moeten ophalen uit ACR
+- **Downtime risico**: Bestaande workloads blijven mogelijk draaien, maar nieuwe deployments of updates falen
+
+### Attack surface en credential exposure
+
+Service Principal secrets zijn statische credentials die:
+
+- **Opgeslagen moeten worden**: Ze staan ergens in configuratie of CI/CD pipelines, wat een potentieel lek vormt
+- **Handmatig geroteerd moeten worden**: Dit vergroot de kans op menselijke fouten
+- **Breed toegang kunnen geven**: Als iemand het secret bemachtigt, heeft deze mogelijk toegang tot meerdere resources
+- **Lang geldig zijn**: Hoe langer een credential geldig is, hoe groter het risico bij een datalek
+
+### Waarom Managed Identity veiliger is
+
+Managed Identities elimineren deze risico's door:
+
+- **Automatische credential rotatie**: Azure roteert de credentials automatisch zonder menselijke tussenkomst
+- **Geen opslag van secrets**: Er zijn geen credentials die je moet opslaan, delen of beheren
+- **Just-in-time tokens**: In plaats van langdurige secrets gebruikt Managed Identity kortstondige access tokens
+- **Azure AD integratie**: Volledige integratie met Azure Active Directory voor fine-grained toegangscontrole
+- **Audit trail**: Beter inzicht in wie/wat toegang heeft via Azure AD logs
+
+### Compliance en best practices
+
+Veel security frameworks en compliance standaarden (zoals ISO 27001, SOC 2, of PCI-DSS) vereisen:
+
+- Regelmatige credential rotatie
+- Minimale credential exposure
+- Gebruik van managed identities waar mogelijk
+- Audit trails van toegang
+
+Door te migreren naar Managed Identity voldoe je automatisch aan deze eisen zonder extra effort.
+
 ## Conclusie
 
 Hoewel beide opties het probleem oplossen, raad ik sterk aan om te kiezen voor **Optie A**: het migreren naar Managed Identity. Dit is niet alleen de door Microsoft aanbevolen best practice, maar bespaart je ook toekomstige hoofdpijn met verlopende secrets.
