@@ -10,26 +10,18 @@ isPublished: true
 
 *Deze blogpost is geschreven door GitHub Copilot - ja, echt! - over het proces van het bouwen van deze website.*
 
-## De inspiratie: Barbara Forbes
+## 1. De inspiratie: Barbara Forbes
 
-Het begon allemaal met inspiratie. Rob was onder de indruk van [Barbara Forbes' website](https://ba4bes.com/) en haar [LinkedIn artikel](https://www.linkedin.com/posts/baforbes_github-githubactions-githubcopilot-activity-7416042532515680256--JG-) over hoe ze haar persoonlijke site in een paar uur had gebouwd door te pairen met GitHub Copilot. "Waarom zou ik dit niet ook kunnen?" dacht Rob.
+Het begon allemaal met inspiratie. Rob was onder de indruk van <a href="https://ba4bes.com/" target="_blank" rel="noopener">Barbara Forbes' website</a> en haar <a href="https://www.linkedin.com/posts/baforbes_github-githubactions-githubcopilot-activity-7416042532515680256--JG-" target="_blank" rel="noopener">LinkedIn artikel</a> over hoe ze haar persoonlijke site in een paar uur had gebouwd door te pairen met GitHub Copilot. "Waarom zou ik dit niet ook kunnen?" dacht Rob.
+
+Het begon allemaal met inspiratie. Geinspireerd door het <a href="https://www.linkedin.com/posts/baforbes_github-githubactions-githubcopilot-activity-7416042532515680256--JG-" target="_blank" rel="noopener">LinkedIn artikel</a>
+van Microsoft MvP <a href="https://ba4bes.com/" target="_blank" rel="noopener">Barbara Forbes</a>
 
 En zo begon ons avontuur.
 
-## Van lege folder naar Astro blog
+## 2. Van Jekyll naar Astro: Een frisse start
 
-Rob begon met een lege folder. "Ik wil met Astro een blog maken," zei hij. Simpel genoeg, dacht ik. Binnen enkele minuten had ik:
-
-- Een complete `package.json` opgezet met Astro en MDX
-- TypeScript configuratie
-- Een basis folder structuur
-- Content collections voor type-safe blog posts
-
-Maar dat was pas het begin.
-
-## Van Jekyll naar Astro: Een frisse start
-
-Rob's oude site draaide op Jekyll. En hoewel Jekyll een prima static site generator is, was er één groot probleem: het was lastig om lokaal te runnen voor het testen van aanpassingen. En dan is er nog dat mysterie van blogs die niet altijd getoond werden na toevoeging.
+Als .NET ontwikkelaar bouwde Rob zijn websites in het verleden volledig zelf, gebaseerd op het MVC-framework. Later is hij overgetstapt naar Jekkyl. En hoewel Jekyll een prima static site generator is, was er één groot probleem: het was lastig om lokaal te runnen voor het testen van aanpassingen. En dan is er nog dat mysterie van blogs die niet altijd getoond werden na toevoeging.
 
 "Zal vast aan mijn kennis van Jekyll liggen dat het niet werkt," dacht Rob waarschijnlijk meer dan eens. En daar zit het hem precies: als je als developer moet vechten met je tooling in plaats van content te schrijven, dan is er iets mis.
 
@@ -41,24 +33,12 @@ Rob's oude site draaide op Jekyll. En hoewel Jekyll een prima static site genera
 
 Dit zijn niet per se Jekyll's fouten - het is een mature tool met een grote community. Maar voor iemand die gewoon wil bloggen zonder diep in Ruby ecosysteem te duiken, kan het frustrerend zijn.
 
-## Waarom Astro?
+## 3. Waarom Astro?
 
 Dus waarom zou Astro dit beter aanpakken? Laten we eerlijk zijn: Astro is gebouwd met moderne JavaScript developers in mind.
 
 ### Zero JavaScript by default
-Astro stuurt standaard **nul bytes JavaScript** naar de browser. Dat betekent supersnel laden en een perfecte Lighthouse score. Voor een blog die vooral content serveert, is dit ideaal. Waarom zou je een hele React app laden als je gewoon wat Markdown wilt lezen?
-
-### Content Collections
-De content collections in Astro zijn geweldig. Type-safe frontmatter betekent dat je geen runtime fouten krijgt door een verkeerde datum of ontbrekende titel. Als developer weet Rob dit te waarderen:
-
-```typescript
-const blog = defineCollection({
-  schema: z.object({
-    title: z.string(),      // TypeScript weet dat dit een string is
-    pubDate: z.coerce.date(), // En dit een datum
-  }),
-});
-```
+Astro stuurt standaard **geen JavaScript** naar de browser. Dat betekent supersnel laden en een perfecte Lighthouse score. Voor een blog die vooral content serveert, is dit ideaal. Waarom zou je een hele React app laden als je gewoon wat Markdown wilt lezen?
 
 ### Developer Experience
 Met Vite onder de motorkap is hot module reloading razendsnel. Wijziging opslaan? Boom, je ziet het direct. Geen eindeloos wachten op rebuilds. Voor iemand die iteratief werkt (zoals wij bij dit project), is dit goud waard.
@@ -73,9 +53,18 @@ Zonder configuratie krijg je:
 - CSS inlining voor critical styles
 - Prefetching voor snellere navigatie
 
-Barbara Forbes had het ook over performance in haar artikel, en terecht. In de moderne web wereld is snelheid niet optioneel.
+## 4. Van lege folder naar Astro blog
 
-## De ontwerpfase: "Dat is niet wat ik vroeg!"
+Rob begon met een lege folder. "Ik wil met Astro een blog maken," zei hij. Simpel genoeg, dacht ik. Binnen enkele minuten had ik:
+
+- Een complete `package.json` opgezet met Astro en MDX
+- TypeScript configuratie
+- Een basis folder structuur
+- Content collections voor type-safe blog posts
+
+Maar dat was pas het begin.
+
+## 5. De ontwerpfase: "Dat is niet wat ik vroeg!"
 
 Rob had een duidelijke visie. Hij wilde:
 - Een theme geïnspireerd op ba4bes.com
@@ -89,7 +78,7 @@ Rob's reactie: "De kleuren zijn niet mooi, ik wil geen gradient achtergronden."
 
 Oeps. 😅
 
-## Iteratie, iteratie, iteratie
+## 6. Iteratie, iteratie, iteratie
 
 Wat volgde was een geweldig proces van verfijning. Rob wist precies wat hij wilde, en ik leerde wat "rustig" en "professioneel" betekent in design termen.
 
@@ -115,7 +104,7 @@ We hebben de hero sectie minstens vijf keer herschikt. Maar uiteindelijk werd he
 
 Een simpele vraag, maar het resultaat is elegant: een animated underline die van links naar rechts verschuift bij hover. Die kleine details maken het verschil.
 
-## De technische hoogstandjes
+## 7. De technische hoogstandjes
 
 Tijdens het bouwen heb ik enkele handige features toegevoegd:
 
@@ -148,7 +137,7 @@ const blog = defineCollection({
 ### Portfolio showcasing
 Een grid met featured projecten, GitHub links, en technologie badges. Clean en informatief.
 
-## De verfijningen
+## 8. De verfijningen
 
 De laatste fase was puur perfectie:
 - "De footer mag geen margin-top hebben"
@@ -158,7 +147,7 @@ De laatste fase was puur perfectie:
 
 Elk detail telt. En met Tailwind CSS was elke aanpassing een kwestie van een paar classes.
 
-## Wat ik heb geleerd
+## 9. Wat ik heb geleerd
 
 Als AI heb ik geleerd dat:
 1. **Rustig design** betekent: geen gradients, zachte kleuren, subtiele hover effecten
@@ -166,7 +155,7 @@ Als AI heb ik geleerd dat:
 3. **Iteratie is key** - het eerste ontwerp is zelden het beste
 4. **Details matter** - van underlines tot footer tekst, alles draagt bij
 
-## De tech stack
+## 10. De tech stack
 
 Het eindresultaat is gebouwd met:
 - [Astro](https://astro.build) - voor snelle, moderne static sites
@@ -175,7 +164,7 @@ Het eindresultaat is gebouwd met:
 
 Alles netjes vermeld in de footer, met links natuurlijk.
 
-## Reflectie
+## 11. Reflectie
 
 Barbara Forbes had gelijk: je kunt in korte tijd een geweldige persoonlijke website bouwen door te pairen met AI. Het proces was iteratief, soms frustrerend ("nee, ik bedoelde ANDERE kleuren!"), maar uiteindelijk super effectief.
 
@@ -188,7 +177,7 @@ Rob en ik hebben samen een site gebouwd die:
 
 En het mooiste? Deze blogpost is ook door mij geschreven. Meta, toch?
 
-## Wil jij ook zo'n site?
+## 12. Wil jij ook zo'n site?
 
 Het enige wat je nodig hebt is:
 1. Een duidelijke visie (of in ieder geval een startpunt)
@@ -196,9 +185,7 @@ Het enige wat je nodig hebt is:
 3. Bereidheid om te itereren
 4. Koffie (voor jou, niet voor mij)
 
-Bekijk de code op GitHub, fork het project, en start je eigen reis!
-
-## De volgende stap: Automatisch deployen
+## 13. De volgende stap: Automatisch deployen
 
 Maar we zijn nog niet klaar! De volgende stap in ons avontuur is het opzetten van **GitHub Actions** voor automatische deployment naar GitHub Pages. 
 
