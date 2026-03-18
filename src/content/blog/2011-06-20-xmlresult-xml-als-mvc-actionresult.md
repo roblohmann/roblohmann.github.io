@@ -3,7 +3,7 @@ title: "XMLResult – XML als MVC Actionresult"
 description: "Hoe je XML als ActionResult kunt teruggeven in ASP.NET MVC door een custom XMLResult class te implementeren."
 pubDate: 2011-06-20T00:00:00+02:00
 tags: ["MVC", "ASP.NET", "XML"]
-isPublished: true
+isPublished: false
 ---
 XMLResult een een actionresult voor gebruik van XML met het MVC-pattern. In deze blog vertel ik meer over het gebruik van dit onderdeel uit de [MVCContrib] library.
 

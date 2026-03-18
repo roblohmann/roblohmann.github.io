@@ -3,7 +3,7 @@ title: "MVC3, wat zijn mijn ervaringen tot nu toe?"
 description: "Mijn ervaringen met Microsoft MVC3, de Razor View Engine en de nieuwe features zoals output caching op pagina niveau."
 pubDate: 2011-04-30T00:00:00+02:00
 tags: ["MVC", "ASP.NET", ".NET"]
-isPublished: true
+isPublished: false
 ---
 MVC3 is in januari 2011 door Microsoft vrijgegeven. Ik heb de release op de voet gevolgd en ben mij er steeds meer in gaan verdiepen. In deze blog vertel ik over mijn ervaringen met MVC3 en wat mij is opgevallen tijdens het werken ermee.
 

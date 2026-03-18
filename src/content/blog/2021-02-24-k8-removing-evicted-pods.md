@@ -3,7 +3,7 @@ title: "Kubernetes: Removing Evicted pods"
 description: "A handy command for cleaning up evicted pods in Kubernetes clusters."
 pubDate: 2021-02-24T00:00:00+01:00
 tags: ["Kubernetes", "DevOps", "Container"]
-isPublished: true
+isPublished: false
 ---
 Recently I’ve been working a lot with Kubernetes in the Azure Cloud for my current employer. While deploying a microservice to a newly created namespace I saw that a lot of pods where having the status ‘Evicted‘. But what was the status ‘Evicted‘? I’d never seen it before.
 

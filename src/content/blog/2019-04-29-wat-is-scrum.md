@@ -3,7 +3,7 @@ title: "Wat is scrum?"
 description: "Een introductie tot Scrum: de agile methodiek voor projectmanagement en softwareontwikkeling."
 pubDate: 2019-04-29T00:00:00+02:00
 tags: ["Scrum", "Agile", "Projectmanagement"]
-isPublished: true
+isPublished: false
 ---
 Recent kwam ik op scrum.org een interessante [blog][1] tegen. Deze blog deed mij denken aan veel dingen van Scrum die ik tijdens mijn training voor Scrum master heb geleerd. En vooral ook aan de dingen die vaak genoemd worden door de mensen die niet zo’n grote voorstander van Scrum zijn.
 

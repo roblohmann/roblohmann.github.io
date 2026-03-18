@@ -3,7 +3,7 @@ title: "PostgreSQL: Database gebruiker toevoegen"
 description: "Stap-voor-stap handleiding voor het aanmaken en beheren van gebruikers in PostgreSQL databases."
 pubDate: 2022-07-04T00:00:00+02:00
 tags: ["PostgreSQL", "Database", "SQL"]
-isPublished: true
+isPublished: false
 ---
 
 In deze blog leg ik uit hoe je een nieuwe gebruiker toevoegt aan een PostgreSQL database en de juiste rechten toekent. Dit is noodzakelijk wanneer je bijvoorbeeld een applicatie wilt laten verbinden met een aparte databasegebruiker.

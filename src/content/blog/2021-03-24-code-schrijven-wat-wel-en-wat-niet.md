@@ -3,7 +3,7 @@ title: "Code schrijven, wat wel en wat niet?"
 description: "Mijn opvattingen over code kwaliteit, coding standards en best practices in .NET development."
 pubDate: 2021-03-24T00:00:00+01:00
 tags: [".NET", "Best Practices", "Code Quality"]
-isPublished: true
+isPublished: false
 ---
 Veel ontwikkelaars en software architecten hebben zo hun een eigen ideeën over software- en webontwikkeling. Zo heb ik ze ook. Wel of geen commentaar in code? En variabelen? Moeten ze implicitly typed of explicitly typed? Iedereen heeft zijn mening over de manier van coderen. Maar een ding kan ik vooraf al wel zeggen, zolang het binnen de organisatie maar consistent is en iedereen zich eraan houdt voorkomt dit al veel onnodige discussies en problemen wanneer je in andersmans code moet werken.
 
