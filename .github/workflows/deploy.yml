@@ -1,52 +1,70 @@
+# Publiceert de Astro-site automatisch naar GitHub Pages.
 name: Deploy Astro to GitHub Pages
 
 on:
   push:
+    # Start alleen bij pushes naar de publicatiebranch.
     branches: [ astro-v1 ]
+  # Laat handmatig starten vanuit de GitHub Actions UI ook toe.
   workflow_dispatch:
 
+# Minimale rechten voor deze workflow:
+# - broncode lezen
+# - Pages deployment uitvoeren
+# - OIDC-token gebruiken voor veilige authenticatie
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Voorkom overlappende deployments; alleen de nieuwste run mag doorgaan.
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
   build:
+    # Bouw de site op een schone Linux-runner.
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
+        # Haal de repository-inhoud op zodat de build toegang heeft tot alle bronbestanden.
         uses: actions/checkout@v4
 
       - name: Setup Node
+        # Gebruik Node.js 20 en cache npm-packages om builds sneller te maken.
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
       - name: Install dependencies
+        # Installeer exact de versies uit package-lock.json voor reproduceerbare builds.
         run: npm ci
 
       - name: Build Astro
+        # Genereer de statische site in de map dist/.
         run: npm run build
 
       - name: Upload artifact
+        # Maak de build-output beschikbaar voor de deploy-job.
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
+    # Koppel deze job aan de standaard GitHub Pages environment.
     environment:
       name: github-pages
+      # Publiceer de uiteindelijke URL in de job-output en environment-weergave.
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    # Wacht tot de build-job succesvol is afgerond.
     needs: build
 
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
+        # Zet het eerder geüploade artifact live op GitHub Pages.
         uses: actions/deploy-pages@v4
