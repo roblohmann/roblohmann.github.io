@@ -3,7 +3,7 @@ title: "MVC3, wat zijn mijn ervaringen tot nu toe?"
 description: "Mijn ervaringen met Microsoft MVC3, de Razor View Engine en de nieuwe features zoals output caching op pagina niveau."
 pubDate: 2011-04-30T00:00:00+02:00
 tags: ["MVC", "ASP.NET", ".NET"]
-isPublished: false
+isPublished: true
 ---
 MVC3 is in januari 2011 door Microsoft vrijgegeven. Ik heb de release op de voet gevolgd en ben mij er steeds meer in gaan verdiepen. In deze blog vertel ik over mijn ervaringen met MVC3 en wat mij is opgevallen tijdens het werken ermee.
 
@@ -35,9 +35,6 @@ Met het gebruik van deze Package Manager wordt dit allemaal voor je gedaan, idea
 Tot zover deze blog over mijn ervaringen met MVC3, ik ben er zeker over te spreken. Je ziet dat ook Microsoft hard aan het werk is om het werk voor de ontwikkelaar makkelijker te maken en de code overzichtelijker en eenvoudigder.
 Tot slot hieronder nog een aantal interressante blogs waarvan ik vind dat jullie die zeker moeten lezen en moeten blijven volgen, beide blogs komen regelmatig met interressante artikelen over MVC en andere ASP.NET onderdelen.
 
-[Blog van Phil Haacked]. Phil Haacked werkt bij Microsoft mee aan de ontwikkelingen ASP.NET en MVC.
+<a href="https://www.haacked.com/" target="_blank" rel="noopener noreferrer">Blog van Phil Haacked</a>. Phil Haacked werkt bij Microsoft mee aan de ontwikkelingen ASP.NET en MVC.
 
-[Blog van Scott Guthrie]. Scott Guthrie is Vice President van de MS Developer Division.
-
-[Blog van Phil Haacked]: http://www.haacked.com/
-[Blog van Scott Guthrie]: https://weblogs.asp.net/scottgu
+<a href="https://weblogs.asp.net/scottgu" target="_blank" rel="noopener noreferrer">Blog van Scott Guthrie</a>. Scott Guthrie is Vice President van de MS Developer Division.
