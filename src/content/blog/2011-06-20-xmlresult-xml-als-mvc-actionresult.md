@@ -11,7 +11,7 @@ XMLResult:
 De eerste keer dat ik las over dit actionresult was toen ik voor de ontwikkeling van mijn eigen website op zoek was naar een controller actie die op een eenvoudige manier XML kon retourneren. Ik kwam via google terecht op dit topic op stackoverflow waar de broncode voor dit actionresult gepubliceerd stond. Het bleek voor mij de ideale oplossing om te gebruiken voor een onderdeel in mijn website.
 Na implementatie van dit onderdeel was ik in staat om vanuit een controlleractie xml terug te sturen naar mijn views. Onderstaande afbeelding toont een voorbeeld van deze implementatie
 
-<img src="images/blog/2011-06-20-xmlresult-xml-als-mvc-actionresult/Voorbeeld-XML_Result.png" />
+<img src="../../images/blog/2011-06-20-xmlresult-xml-als-mvc-actionresult/Voorbeeld-XML_Result.png" />
 
 **MVCContrib:**
 Toen ik ontdekte dat deze functionaliteit (XMLResult) onderdeel van de <a href="http://mvccontrib.codeplex.com/documentation" target="_blank" rel="noopener noreferrer">MVCContrib</a> library heb ik besloten hier eens verder naar te kijken. Deze library bevat een aantal interessante onderdelen die volgens mij zeker het bekijken waard zijn;
