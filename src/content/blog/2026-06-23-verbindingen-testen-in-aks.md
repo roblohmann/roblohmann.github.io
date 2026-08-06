@@ -3,7 +3,7 @@ title: "Van Knooppunt naar Database: Netwerkverbindingen Testen in Azure Kuberne
 description: "Twee methoden om de waarschuwing over verlopen Service Principal secrets in AKS op te lossen: migreren naar Managed Identity of het secret vernieuwen."
 pubDate: 2026-06-23T17:00:00+01:00
 tags: ["kubernetes", "aks", "azure", "networking"]
-isPublished: false
+isPublished: true
 ---
 
 Het is de klassieke frustratie van elke cloud engineer of developer: je applicatie is succesvol gedeployed op je Azure Kubernetes Service (AKS) cluster, de omgevingsvariabelen staan goed, maar bij het opstarten crasht de pod met een cryptische melding: "Connection timed out" of "Database not reachable."

@@ -3,7 +3,7 @@ title: "Azure CLI: Hoe voeg je een nodepool toe aan een AKS-cluster"
 description: "Gebruik de Azure CLI om een nieuwe node pool toe te voegen aan een bestaand Azure Kubernetes Service (AKS) cluster."
 pubDate: 2025-07-10T00:00:00+02:00
 tags: ["Azure", "Kubernetes", "AKS", "Azure CLI"]
-isPublished: false
+isPublished: true
 ---
 
 Ik ben vandaag bezig geweest met een Azure Kubernetes Cluster waarbij een nodepool toegevoegd moest worden. De huidige nodepool was gebaseerd op Virtual Machines met te weinig CPU. Kortom, tijd voor een nieuwe nodepool met een ander type Virtual Machine zodat het cluster beter eventuele pieken kon opvangen. Met de huidige configuratie duurde het te lang voordat auto-scaling acties plaats hadden gevonden.

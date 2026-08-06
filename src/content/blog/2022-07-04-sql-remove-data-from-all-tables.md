@@ -3,7 +3,7 @@ title: "SQL - How to clear all data in all tables"
 description: "An SQL script to remove all data from every table in a database without affecting the structure."
 pubDate: 2022-07-04T00:00:00+02:00
 tags: ["SQL", "Database", "Scripts"]
-isPublished: false
+isPublished: true
 ---
 Recently I was working on a legacy project and had to create a copy of an existing database. This could only be done through the Azure Portal because I had no scripts or Entity Framework migrations available.
 

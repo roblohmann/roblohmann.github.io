@@ -3,7 +3,7 @@ title: "Alle tabellen doorzoeken met SQL"
 description: "Een SQL query om in alle tabellen van een database naar specifieke data te zoeken."
 pubDate: 2025-01-28T00:00:00+01:00
 tags: ["SQL", "Database", "Search"]
-isPublished: false
+isPublished: true
 ---
 
 Een tijdje terug had ik iets nodig om een waarde in een tabel op te zoeken in een grote SQL Database. Uiteindelijk kwam ik op onderstaande stored procedure uit.

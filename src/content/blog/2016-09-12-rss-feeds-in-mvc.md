@@ -3,7 +3,7 @@ title: "RSS-Feeds in MVC"
 description: "Een praktische handleiding voor het implementeren van RSS feeds in ASP.NET MVC applicaties."
 pubDate: 2016-09-12T00:00:00+02:00
 tags: ["MVC", "ASP.NET", "RSS"]
-isPublished: false
+isPublished: true
 ---
 Met het herbouwen van mijn site heb ik ook veel code herschreven of zelfs opnieuw geschreven. Mijn vorige site was al een aantal jaren oud en in mijn werk leer ik ook nog dagelijks dingen bij of ontdek ik nieuwe dingen.
 Een van de dingen die ik jaren terug zelf toegevoegd heb is een RSS-Feed, destijds zelf gebouwd en redelijk recht-toe-recht aan met hardcoded url’s enzo. Per toeval stuitte ik op een blog van codeinside waarop ik een artikel tegenkwam hoe zij dit doen., namelijk met een syndicationfeed.

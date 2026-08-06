@@ -3,7 +3,7 @@ title: "Azure Kubernetes: Van Service Principal naar Managed Identity"
 description: "Twee methoden om de waarschuwing over verlopen Service Principal secrets in AKS op te lossen: migreren naar Managed Identity of het secret vernieuwen."
 pubDate: 2026-01-29T13:15:00+01:00
 tags: ["kubernetes", "aks", "azure", "security"]
-isPublished: false
+isPublished: true
 ---
 
 Wanneer je een Azure Kubernetes Service (AKS) cluster beheert, kun je de waarschuwing tegenkomen dat je Service Principal secret bijna  (of misschien al wel verlopen is). Dit is een bekend probleem bij oudere AKS-clusters die nog gebruikmaken van Service Principals in plaats van Managed Identities.

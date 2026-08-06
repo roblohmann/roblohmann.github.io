@@ -3,7 +3,7 @@ title: "Update targetframework for .NET Core projects with PowerShell"
 description: "PowerShell script to automatically update the target framework version of .NET Core projects."
 pubDate: 2016-12-06T00:00:00+01:00
 tags: ["PowerShell", ".NET Core", "Automation"]
-isPublished: false
+isPublished: true
 ---
 With the recent release of .NET Core 3.1 last Wednesday, I decided to upgrade to current project I’m working on from .NET Core 3.0 to .NET Core 3.1. This sounds easy right?
 

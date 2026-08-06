@@ -3,7 +3,7 @@ title: "How to validate a DNS TXT-record"
 description: "Step-by-step guide for validating and checking DNS TXT records."
 pubDate: 2019-05-19T00:00:00+02:00
 tags: ["DNS", "Networking", "DevOps"]
-isPublished: false
+isPublished: true
 ---
 Recently I’ve been using [Let’s Encrypt][1] a lot to generate SSL-certificates. Let’s Encrypt uses the ACME-protocol to validate the ownership of a DNS-record, how this works is described on [their website][2]. Since this requires me to update my DNS-records I use the nslookup command to see if the updated TXT-Records is active. This truely is very easy!
 
