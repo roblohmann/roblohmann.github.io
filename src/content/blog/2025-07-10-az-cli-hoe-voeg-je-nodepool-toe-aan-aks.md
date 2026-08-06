@@ -69,24 +69,24 @@ kubectl cordon <naam-van-de-vmss>
 Concreet zou dit dus iets kunnen zijn als
 
 ```bash
-kubectl cordon aks-<naam-van-je-aks-cluster>-<random-nummer>-vmss000000
+kubectl cordon aks-<naam-van-je-nodepool>-<random-nummer>-vmss000000
 ```
 
 Je kunt dit commando voor meerdere nodes in de nodepool uitvoeren op de volgende manier
 ```bash
-kubectl cordon aks-<naam-van-je-aks-cluster>-<random-nummer>-vmss000000 aks-<naam-van-je-aks-cluster>-<random-nummer>-vmss000001
+kubectl cordon aks-<naam-van-je-nodepool>-<random-nummer>-vmss000000 aks-<naam-van-je-nodepool>-<random-nummer>-vmss000001
 ```
 
 Dit commando kan op elk gewenst moment uitgevoerd worden. In dit geval doe ik dit niet direct in deze situatie, maar vlak voor een release die op een later moment gepland heb.
 
 ### **Stap 3 Uitvoeren van het 'Drain-command'**
 
-Het ```drain```-command kan net als het ```cordon```-command uitgevoerd worden op een specifieke node in de nodepool. Dit om te zorgen dat alle containers op de node worden afgesloten. In combinatie met het ```cordon```-command zorgt dit ervoor dat de containers niet meer gescheduled worden op de oude nodepool, maar op de nieuwe. Als je dan ook zorgt dat je drie nodes in je pool hebt, in combinatie met de juiste update strategrie van je containers, zit je goed. Want dan regelt kubernetes een overgang zonder dat de gebruiker het ( hopelijk ;-) ) merkt.
+Het ```drain```-command kan net als het ```cordon```-command uitgevoerd worden op een specifieke node in de nodepool. Dit om te zorgen dat alle containers op de node worden afgesloten. In combinatie met het ```cordon```-command zorgt dit ervoor dat de containers niet meer gescheduled worden op de oude nodepool, maar op de nieuwe. Als je dan ook zorgt dat je drie nodes in je pool hebt, in combinatie met de juiste update strategie van je containers, zit je goed. Want dan regelt kubernetes een overgang zonder dat de gebruiker het ( hopelijk ;-) ) merkt.
 
 Het command kan als volgt uitgevoerd worden. In dit voorbeeld doe ik het voor meerdere nodes in de pool. Maar dit kan er ook een zijn.
 
 ```bash
-kubectl drain aks-<naam-van-je-aks-cluster>-<random-nummer>-vmss000000 aks-<naam-van-je-aks-cluster>-<random-nummer>-vmss000001 --ignore-daemonsets --delete-emptydir-data
+kubectl drain aks-<naam-van-je-nodepool>-<random-nummer>-vmss000000 aks-<naam-van-je-nodepool>-<random-nummer>-vmss000001 --ignore-daemonsets --delete-emptydir-data
 ```
 
 Je ziet dat ik hier twee extra parameters meegeeft. Namelijk ```--ignore-daemonsets``` en ```--delete-emptydir-data```. Deze commands help om te zorgen dat de betreffende node op een gecontroleerde manier geleegd wordt.
@@ -94,12 +94,13 @@ Je ziet dat ik hier twee extra parameters meegeeft. Namelijk ```--ignore-daemons
 #### Uitleg van de gebruikte parameters
 ```bash --ignore-daemonsets```
 
-Deze optie negeert pods die zijn beheerd door DaemonSets.
-Normaal probeert ```kubectl drain``` alle pods van een node te verwijderen.
+Deze optie negeert pods die zijn beheerd door DaemonSets. Normaal probeert ```kubectl drain``` alle pods van een node te verwijderen.
 
 Pods die onder een DaemonSet vallen kunnen echter niet worden verwijderd via een normale kubectl delete pod, omdat ze automatisch opnieuw worden gemaakt door de DaemonSet-controller.
 
 Deze flag zorgt ervoor dat kubectl drain deze pods overslaat in plaats van te falen.
+
+<i>Een DaemonSet in Azure Kubernetes Service (AKS) zorgt ervoor dat op elke (of geselecteerde) node precies één pod draait. Zodra er een nieuwe node aan je cluster wordt toegevoegd, wordt automatisch ook een nieuwe pod van die DaemonSet op die node gestart. Verdwijnt een node, dan verdwijnt die pod ook.</i>
 
 ```bash --delete-emptydir-data```
 
