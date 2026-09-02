@@ -1,5 +1,5 @@
 ---
-title: "Van Knooppunt naar Database: Netwerkverbindingen Testen in Azure Kubernetes Service (AKS)"
+title: "Netwerkverbindingen Testen in Azure Kubernetes Service (AKS)"
 description: "Twee methoden om de waarschuwing over verlopen Service Principal secrets in AKS op te lossen: migreren naar Managed Identity of het secret vernieuwen."
 pubDate: 2026-06-23T17:00:00+01:00
 tags: ["kubernetes", "aks", "azure", "networking"]
@@ -12,7 +12,7 @@ In de cloudomgeving van Azure, waar netwerken vaak streng zijn beveiligd met Vir
 
 In deze blog leer je hoe je als een ware netwerkdetective de verbinding vanaf je AKS-cluster naar verschillende Azure-databases kunt testen, diagnosticeren en repareren.
 
-# De Gereedschapskist: Maak kennis met netshoot
+# Maak kennis met netshoot
 In plaats van blindelings configuraties aan te passen, gaan we testen vanaf de bron. Omdat applicatie-containers vaak minimaal zijn ingericht (zonder tools als nslookup of nc), starten we een tijdelijke debug-pod op in het cluster met de image netshoot. Deze pod zit boordevol handige netwerktools.
 
 Start de pod met het volgende commando in je terminal:
@@ -29,7 +29,7 @@ Vervang in de netshoot-pod de onderstaande voorbeelden door jouw eigen database-
 
 ### Voor Azure SQL (MSSQL)
 ```bash
-nslookup ecare-azure-dbms1-dev.database.windows.net
+nslookup mijn-sql-db.database.windows.net
 ```
 
 ### Voor Azure Database for PostgreSQL
@@ -46,7 +46,7 @@ nslookup mijn-mysql-db.mysql.database.azure.com
 Goed nieuws (Private Link): Je ziet dat de naam wordt omgezet naar een intern IP-adres (bijvoorbeeld 10.99.0.4) én er staat een privatelink-alias in de response:
 ```bash
 Non-authoritative answer:
-Name:    ecare-azure-dbms1-dev.privatelink.database.windows.net
+Name:    mijn-sql-db.privatelink.database.windows.net
 Address: 10.99.0.4
 ```
 
