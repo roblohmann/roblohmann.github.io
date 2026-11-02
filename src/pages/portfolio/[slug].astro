@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projectGroups, projectSlug } from '../../data/projects';
+import { getNugetInfo } from '../../data/nuget';
+
+export function getStaticPaths() {
+  return projectGroups.flatMap((group) =>
+    group.projects.map((project) => ({
+      params: { slug: projectSlug(project) },
+      props: { project, group },
+    }))
+  );
+}
+
+const { project, group } = Astro.props;
+const related = group.projects.filter((p) => p.name !== project.name);
+const packages = await Promise.all(
+  (project.packages ?? []).map(async (id) => ({ id, info: await getNugetInfo(id) }))
+);
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout title={`${project.name} - Rob Lohmann`} description={project.description}>
+  <section class="max-w-4xl mx-auto px-8 sm:px-12 lg:px-16 py-16">
+    <a href="/portfolio" class="inline-flex items-center gap-2 text-secondary hover:text-primary font-medium mb-8 transition-colors">
+      ← Terug naar portfolio
+    </a>
+
+    <p class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">{group.title}</p>
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900 dark:text-white border-l-4 border-secondary pl-6 leading-tight break-words">{project.name}</h1>
+    <p class="text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">{project.description}</p>
+
+    <div class="flex flex-wrap gap-2 mb-10">
+      {project.technologies.map((tech) => (
+        <span class="px-3 py-1 bg-teal-50 dark:bg-teal-900/30 text-secondary dark:text-teal-300 rounded-full text-xs font-semibold border border-secondary/20">{tech}</span>
+      ))}
+    </div>
+
+    {packages.length > 0 && (
+      <div class="mb-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Installeren</h2>
+        <div class="space-y-6">
+          {packages.map(({ id, info }) => (
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-2 text-sm">
+                <a href={`https://www.nuget.org/packages/${id}`} target="_blank" rel="noopener noreferrer" class="font-semibold text-secondary hover:text-primary break-all">{id}</a>
+                {info && (
+                  <>
+                    <span class="px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 border border-primary/20 font-semibold">nuget v{info.version}</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600">bijgewerkt {formatDate(info.published)}</span>
+                  </>
+                )}
+              </div>
+              <pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm"><code>dotnet add package {id}</code></pre>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="flex flex-wrap gap-4 mb-16">
+      <a href={project.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-white rounded-xl hover:bg-accent transition-all font-semibold shadow-lg">
+        Bekijk op GitHub →
+      </a>
+    </div>
+
+    {related.length > 0 && (
+      <div>
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Gerelateerde projecten</h2>
+        <ul class="space-y-2">
+          {related.map((p) => (
+            <li>
+              <a href={`/portfolio/${projectSlug(p)}`} class="text-secondary hover:text-primary font-medium break-words">{p.name}</a>
+              <span class="text-gray-600 dark:text-gray-400"> — {p.description}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </section>
+</Layout>
