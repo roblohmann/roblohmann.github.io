@@ -3,8 +3,8 @@ name: Deploy Astro to GitHub Pages
 
 on:
   push:
-    # Start alleen bij pushes naar de publicatiebranch.
-    branches: [ astro-v1 ]
+    # Start alleen bij pushes naar de publicatiebranch (master).
+    branches: [ master ]
   # Wekelijkse build (maandag 06:00 UTC) zodat de NuGet-versies op de portfolio-pagina's actueel blijven.
   schedule:
     - cron: '0 6 * * 1'
