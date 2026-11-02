@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  pubDate: Date;
+  tags?: string[];
+  readingTime: string;
+}
+
+const { title, description, slug, pubDate, tags, readingTime } = Astro.props;
+---
+
+<article class="relative overflow-hidden rounded-2xl shadow-2xl group">
+  <div class="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary opacity-90"></div>
+  <div class="relative p-12 text-white">
+    <div class="flex items-center gap-2 mb-4">
+      <span class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium border border-white/30">
+        ✨ Featured
+      </span>
+      <span class="text-sm text-blue-100">
+        {pubDate.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </span>
+      <span class="text-blue-100">•</span>
+      <span class="text-sm text-blue-100">{readingTime}</span>
+    </div>
+    
+    <h2 class="text-4xl md:text-5xl font-bold mb-4 group-hover:scale-105 transition-transform">
+      <a href={`/blog/${slug}`} class="hover:text-blue-100 transition-colors">
+        {title}
+      </a>
+    </h2>
+    
+    <p class="text-lg text-blue-50 mb-6 leading-relaxed max-w-3xl">
+      {description}
+    </p>
+    
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-6">
+        {tags.map((tag) => (
+          <span class="px-3 py-1 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm border border-white/20">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+    
+    <a 
+      href={`/blog/${slug}`}
+      class="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary rounded-lg hover:bg-blue-50 transition-all font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+    >
+      Lees artikel
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+      </svg>
+    </a>
+  </div>
+  
+  <!-- Decorative gradient blur circles -->
+  <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+  <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+</article>

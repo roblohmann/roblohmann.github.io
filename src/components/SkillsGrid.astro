@@ -1,0 +1,64 @@
+---
+interface Skill {
+  name: string;
+  level: number; // 0-100
+  icon: string;
+}
+
+interface Props {
+  skills: Skill[];
+}
+
+const { skills } = Astro.props;
+---
+
+<section class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-16 bg-white dark:bg-gray-900 transition-colors">
+  <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white border-l-4 border-primary pl-4">Skills & Expertise</h2>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {skills.map((skill) => (
+      <div class="group relative p-4 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition-all hover:shadow-lg hover:-translate-y-1">
+        <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">{skill.icon}</div>
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-2">{skill.name}</h3>
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+          <div 
+            class="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-1000 skill-bar"
+            style={`width: ${skill.level}%`}
+            data-level={skill.level}
+          ></div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  // Animate skill bars on scroll
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bars = entry.target.querySelectorAll('.skill-bar');
+        bars.forEach((bar) => {
+          const level = bar.getAttribute('data-level');
+          setTimeout(() => {
+            (bar as HTMLElement).style.width = `${level}%`;
+          }, 100);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.skill-bar').forEach(bar => {
+    // Start at 0 width for animation
+    (bar as HTMLElement).style.width = '0%';
+    const section = bar.closest('section');
+    if (section) {
+      observer.observe(section);
+    }
+  });
+</script>
