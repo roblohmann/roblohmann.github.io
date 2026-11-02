@@ -2,58 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
-// const projects = [
-//   {
-//     name: 'Voorbeeld Project 1',
-//     description: 'Een uitgebreid .NET project met Azure integratie voor het beheren van cloud resources.',
-//     url: 'https://github.com/roblohmann/project1',
-//     technologies: ['.NET', 'Azure', 'C#', 'Docker'],
-//     featured: true,
-//     stars: 42,
-//     forks: 12,
-//   },
-//   {
-//     name: 'Kubernetes Tool',
-//     description: 'Een handige CLI tool voor het beheren van Kubernetes clusters en het automatiseren van deployment workflows.',
-//     url: 'https://github.com/roblohmann/k8s-tool',
-//     technologies: ['Kubernetes', 'Go', 'CLI'],
-//     featured: true,
-//     stars: 128,
-//     forks: 24,
-//   },
-//   {
-//     name: 'PostgreSQL Utilities',
-//     description: 'Een verzameling scripts en tools voor PostgreSQL database management en optimalisatie.',
-//     url: 'https://github.com/roblohmann/postgres-utils',
-//     technologies: ['PostgreSQL', 'Python', 'SQL'],
-//     stars: 67,
-//     forks: 15,
-//   },
-//   {
-//     name: 'Azure DevOps Extensions',
-//     description: 'Custom extensions voor Azure DevOps pipelines om CI/CD workflows te verbeteren.',
-//     url: 'https://github.com/roblohmann/azdo-extensions',
-//     technologies: ['Azure DevOps', 'TypeScript', 'Node.js'],
-//     stars: 34,
-//     forks: 8,
-//   },
-//   {
-//     name: 'MVC Blog Engine',
-//     description: 'Een legacy ASP.NET MVC blog engine met RSS feeds en XML sitemap ondersteuning.',
-//     url: 'https://github.com/roblohmann/mvc-blog',
-//     technologies: ['ASP.NET MVC', 'C#', 'SQL Server'],
-//     stars: 18,
-//     forks: 5,
-//   },
-//   {
-//     name: 'Docker Compose Templates',
-//     description: 'Een collectie van Docker Compose templates voor verschillende development scenarios.',
-//     url: 'https://github.com/roblohmann/docker-templates',
-//     technologies: ['Docker', 'Docker Compose', 'YAML'],
-//     stars: 91,
-//     forks: 23,
-//   },
-// ];
+const gh = (repo: string) => `https://github.com/roblohmann/${repo}`;
 
 interface Project {
   name: string;
@@ -61,10 +10,152 @@ interface Project {
   url: string;
   technologies: string[];
   featured?: boolean;
-  stars: number;
-  forks: number;
+  stars?: number;
+  forks?: number;
 }
-const projects: Project[] = []
+
+interface ProjectGroup {
+  title: string;
+  description: string;
+  projects: Project[];
+}
+
+const groups: ProjectGroup[] = [
+  {
+    title: 'Basis en hulpmiddelen',
+    description: 'Fundamentele extensies en helpers voor .NET, als bouwstenen voor andere projecten.',
+    projects: [
+      {
+        name: 'CodeCube.Core',
+        description: 'Basisset met handige enumeraties, extensies en helpers voor het .NET Core framework.',
+        url: gh('CodeCube.Core'),
+        technologies: ['C#', '.NET', 'NuGet'],
+      },
+      {
+        name: 'CodeCube.Core.Extensions',
+        description: 'Een set extensiemethoden voor het .NET Core framework.',
+        url: gh('CodeCube.Core.Extensions'),
+        technologies: ['C#', '.NET', 'NuGet'],
+      },
+      {
+        name: 'CodeCube.Core.Extensions.Drawing',
+        description: 'Extensiemethoden voor het bewerken van afbeeldingen, gebouwd op System.Drawing.Common (alleen Windows).',
+        url: gh('CodeCube.Core.Extensions.Drawing'),
+        technologies: ['C#', '.NET', 'System.Drawing'],
+      },
+      {
+        name: 'CodeCube.ExifLib',
+        description: 'Lichtgewicht bibliotheek om Exif-gegevens uit afbeeldingen te lezen, een port van de originele ExifLib.',
+        url: gh('CodeCube.ExifLib'),
+        technologies: ['C#', '.NET', 'Exif'],
+      },
+      {
+        name: 'CodeCube.TestFixtures.Xunit',
+        description: 'Toont alles wat via Microsoft.Extensions.Logger wordt weggeschreven in de testresultaten van xUnit.',
+        url: gh('CodeCube.TestFixtures.Xunit'),
+        technologies: ['C#', 'xUnit', 'Logging'],
+      },
+    ],
+  },
+  {
+    title: "ASP.NET Core en API's",
+    description: "Bibliotheken voor webapplicaties en API's: van statuscodes tot healthchecks.",
+    projects: [
+      {
+        name: 'CodeCube.AspNetCore.Extensions',
+        description: 'Extensies voor ASP.NET Core, zoals een versie-header die automatisch uit de entry assembly wordt gehaald.',
+        url: gh('CodeCube.AspNetCore.Extensions'),
+        technologies: ['C#', 'ASP.NET Core', 'NuGet'],
+      },
+      {
+        name: 'CodeCube.AspNetCore.HealthChecks.Extensions',
+        description: 'Drie packages met extensies op AspNetCore.Diagnostics.HealthChecks: response writers en versie-informatie.',
+        url: gh('CodeCube.AspNetCore.HealthChecks.Extensions'),
+        technologies: ['C#', 'ASP.NET Core', 'HealthChecks'],
+      },
+      {
+        name: 'CodeCube.Mvc',
+        description: 'MVC-hulpmiddelen zoals menu-items, broodkruimels, meta tags en Google Analytics-tags.',
+        url: gh('CodeCube.MVC'),
+        technologies: ['C#', 'ASP.NET Core', 'MVC'],
+      },
+      {
+        name: 'CodeCube.Api',
+        description: "Kleine bibliotheek met hulpmethoden voor het ontwikkelen van en communiceren met API's.",
+        url: gh('CodeCube.API'),
+        technologies: ['C#', 'ASP.NET Core', 'REST'],
+      },
+      {
+        name: 'CodeCube.StatusCodes',
+        description: 'Maakt het mogelijk om object results te gebruiken voor de statuscodes InternalServerError en BadGateway.',
+        url: gh('CodeCube.StatusCodes'),
+        technologies: ['C#', 'ASP.NET Core', 'HTTP'],
+      },
+      {
+        name: 'CodeCube.HttpExtensions',
+        description: 'Kleine bibliotheek die HttpClient uitbreidt met een DeleteWithBodyAsync-methode.',
+        url: gh('CodeCube.HttpExtensions'),
+        technologies: ['C#', '.NET', 'HttpClient'],
+      },
+      {
+        name: 'CodeCube.FluentValidation',
+        description: 'Handige set aanvullende validators voor het FluentValidation framework.',
+        url: gh('CodeCube.FluentValidation'),
+        technologies: ['C#', 'FluentValidation', 'NuGet'],
+      },
+    ],
+  },
+  {
+    title: 'Azure',
+    description: 'Wrappers en helpers rond veelgebruikte Azure-diensten.',
+    projects: [
+      {
+        name: 'CodeCube.Azure.Storage',
+        description: 'Helperklassen en wrappers om te verbinden met Azure Blob- en Table Storage.',
+        url: gh('CodeCube.Azure.Storage'),
+        technologies: ['C#', 'Azure Storage', 'NuGet'],
+      },
+      {
+        name: 'CodeCube.Azure.Storage.Queues.Extensions',
+        description: 'Extensiemethoden voor het uitvoeren van bewerkingen op Azure QueueMessages.',
+        url: gh('CodeCube.Azure.Storage.Queues.Extensions'),
+        technologies: ['C#', 'Azure Storage', 'Queues'],
+      },
+      {
+        name: 'CodeCube.Azure.KeyVault',
+        description: 'Eenvoudige wrapper rond Azure Key Vault om secrets, certificaten en keys op te halen.',
+        url: gh('CodeCube.Azure.KeyVault'),
+        technologies: ['C#', 'Azure Key Vault', 'NuGet'],
+      },
+      {
+        name: 'CodeCube.Azure.ServiceBus.Attachements',
+        description: 'Verstuurt bijlagen via Service Bus met het claim-check-pattern.',
+        url: gh('CodeCube.Azure.ServiceBus.Attachements'),
+        technologies: ['C#', 'Azure Service Bus', 'Messaging'],
+      },
+      {
+        name: 'CodeCube.ApplicationInsights.Extensions',
+        description: 'Verzameling telemetry initializers om beter gebruik te maken van Application Insights.',
+        url: gh('CodeCube.ApplicationInsights.Extensions'),
+        technologies: ['C#', 'Application Insights', 'Telemetry'],
+      },
+    ],
+  },
+  {
+    title: 'Data',
+    description: 'Toegang tot data met Entity Framework Core.',
+    projects: [
+      {
+        name: 'CodeCube.DataAccess',
+        description: 'Repository pattern en helpers rond Entity Framework Core, voor SQL Server en PostgreSQL.',
+        url: gh('CodeCube.DataAccess'),
+        technologies: ['C#', 'EF Core', 'PostgreSQL', 'SQL Server'],
+      },
+    ],
+  },
+];
+
+const projectCount = groups.reduce((total, group) => total + group.projects.length, 0);
 ---
 
 <Layout 
@@ -79,10 +170,14 @@ const projects: Project[] = []
       </p>
     </div>
 
-    {projects.length > 0 ? (
+    {projectCount > 0 ? (
       <>
+        {groups.map((group) => (
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-2 text-gray-900 dark:text-white">{group.title}</h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-3xl">{group.description}</p>
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
+          {group.projects.map((project, index) => (
             <article 
               class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-2 transition-all duration-300 fade-in flex flex-col"
               style={`animation-delay: ${index * 50}ms`}
@@ -99,14 +194,14 @@ const projects: Project[] = []
               )}
               
               <div class="flex items-start justify-between mb-4">
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white flex-1 group-hover:text-secondary transition-colors">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white flex-1 group-hover:text-secondary transition-colors">
                   <a href={project.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
                     {project.name}
                     <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
                   </a>
-                </h2>
+                </h3>
                 <svg class="w-6 h-6 text-gray-400 dark:text-gray-500 group-hover:text-secondary transition-colors flex-shrink-0 ml-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
@@ -114,6 +209,7 @@ const projects: Project[] = []
               
               <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed flex-grow">{project.description}</p>
               
+              {(project.stars !== undefined || project.forks !== undefined) && (
               <div class="flex items-center gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
                 <span class="flex items-center gap-1">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -128,7 +224,8 @@ const projects: Project[] = []
                   {project.forks}
                 </span>
               </div>
-              
+              )}
+
               <div class="flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
                   <span class="px-3 py-1 bg-teal-50 dark:bg-teal-900/30 text-secondary dark:text-teal-300 rounded-full text-xs font-semibold border border-secondary/20">
@@ -139,6 +236,8 @@ const projects: Project[] = []
             </article>
           ))}
         </div>
+        </div>
+        ))}
 
         <div class="mt-16 text-center bg-gradient-to-br from-white to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-12 border border-gray-200 dark:border-gray-700 shadow-xl">
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Meer projecten</h2>
